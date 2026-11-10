@@ -3,93 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus Systems - 認証ポータル</title>
+    <title>SATO REN | Web Designer Portfolio</title>
     <style>
         body {
-            font-family: monospace;
-            background-color: #0d1117;
-            color: #c9d1d9;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #fafafa;
+            color: #333;
             margin: 0;
+            padding: 0;
+            line-height: 1.6;
         }
-        .container {
+        header {
+            background: #fff;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eaeaea;
+        }
+        .logo { font-weight: bold; font-size: 1.2rem; }
+        nav a { margin-left: 20px; text-decoration: none; color: #666; font-size: 0.9rem; }
+        .hero {
             text-align: center;
-            max-width: 400px;
-            padding: 25px;
-            border: 1px solid #30363d;
-            background-color: #161b22;
-            border-radius: 6px;
+            padding: 100px 20px;
+            background: #ffffff;
         }
-        input[type="text"] {
-            background-color: #0d1117;
-            border: 1px solid #30363d;
-            color: #c9d1d9;
-            padding: 10px;
-            font-family: monospace;
-            width: 70%;
-            margin-bottom: 10px;
-            box-sizing: border-box;
+        .hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .hero p { color: #666; font-size: 1.1rem; }
+        .works {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 0 20px;
         }
-        button {
-            background-color: #238636;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-family: monospace;
-            width: 70%;
+        .works h2 { border-bottom: 2px solid #333; padding-bottom: 10px; }
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 20px;
         }
-        button:hover { background-color: #2ea043; }
-        #message {
-            margin-top: 15px;
-            font-size: 0.9rem;
-            min-height: 20px;
+        .work-card {
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+        }
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #999;
+            font-size: 0.8rem;
+            margin-top: 80px;
+            border-top: 1px solid #eaeaea;
+        }
+        /* 隠し要素へのさりげないリンク（例：フッターのコピーライトの一部） */
+        .secret-link {
+            color: #999;
+            text-decoration: none;
+        }
+        .secret-link:hover {
+            color: #333; /* ホバーすると色が変わる等の違和感 */
         }
     </style>
 </head>
 <body>
 
     <!-- 
-      【ソースコードを見ているプレイヤーへ】
-      管理者認証コード: project-echo-99
+      【ARGヒント】
+      表向きはデザイナーのポートフォリオだが、
+      裏システムへのアクセス口は別の場所（または別ページ）に用意されている。
     -->
 
-    <div class="container">
-        <h2>管理者認証</h2>
-        <p>アクセスコードを入力してください</p>
+    <header>
+        <div class="logo">SATO REN.</div>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#works">Works</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
 
-        <input type="text" id="passcode" placeholder="コードを入力...">
-        <br>
-        <button onclick="checkAndRedirect()">認証開始</button>
+    <section class="hero">
+        <h1>Creating Digital Experiences.</h1>
+        <p>UI/UXデザインとフロントエンド開発を通じて、価値あるプロダクトを形にします。</p>
+    </section>
 
-        <div id="message"></div>
-    </div>
+    <section class="works" id="works">
+        <h2>Recent Works</h2>
+        <div class="work-grid">
+            <div class="work-card">
+                <h3>Corporate Site A</h3>
+                <p>コーポレートサイトのリニューアルデザイン。</p>
+            </div>
+            <div class="work-card">
+                <h3>E-commerce App</h3>
+                <p>アパレルブランド向けECアプリのUI設計。</p>
+            </div>
+            <div class="work-card">
+                <h3>Branding Media</h3>
+                <p>オウンドメディアのWebデザイン全般。</p>
+            </div>
+        </div>
+    </section>
 
-    <script>
-        function checkAndRedirect() {
-            const inputVal = document.getElementById('passcode').value.trim();
-            const messageEl = document.getElementById('message');
-
-            if (inputVal === "project-echo-99") {
-                // 正解時の演出（メッセージを表示して1秒後に遷移）
-                messageEl.style.color = "#58a6ff";
-                messageEl.textContent = "認証成功。機密エリアへ転送中...";
-
-                setTimeout(() => {
-                    // 同じフォルダ内にある secret-room.html へ移動
-                    window.location.href = "secret-room.html";
-                }, 1000); // 1000ミリ秒（1秒）待ってから移動
-
-            } else {
-                // 不正解時
-                messageEl.style.color = "#f85149";
-                messageEl.textContent = "エラー: アクセス拒否";
-            }
-        }
-    </script>
+    <footer>
+        <p>&copy; 2026 Sato Ren. All Rights Reserved. 
+           <!-- プレイヤーがクリックしたくなるような、またはソースコードで気づく仕掛け -->
+           <span style="margin-left: 15px;"><a href="login.html" class="secret-link">system_v2</a></span>
+        </p>
+    </footer>
 
 </body>
 </html>
