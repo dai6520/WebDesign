@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus Systems - メンテナンス中</title>
+    <title>Nexus Systems - 認証ポータル</title>
     <style>
         body {
             font-family: monospace;
@@ -17,78 +17,76 @@
         }
         .container {
             text-align: center;
-            max-width: 500px;
-            padding: 20px;
+            max-width: 400px;
+            padding: 25px;
             border: 1px solid #30363d;
             background-color: #161b22;
+            border-radius: 6px;
         }
-        h1 { font-size: 1.5rem; color: #ff7b72; }
         input[type="text"] {
             background-color: #0d1117;
             border: 1px solid #30363d;
             color: #c9d1d9;
-            padding: 8px;
+            padding: 10px;
             font-family: monospace;
             width: 70%;
+            margin-bottom: 10px;
+            box-sizing: border-box;
         }
         button {
             background-color: #238636;
             color: white;
             border: none;
-            padding: 8px 16px;
+            padding: 10px 20px;
             cursor: pointer;
             font-family: monospace;
+            width: 70%;
         }
         button:hover { background-color: #2ea043; }
-        .hidden-content {
-            display: none;
-            margin-top: 20px;
-            padding: 15px;
-            border: 1px dashed #f85149;
-            background-color: #21262d;
-            text-align: left;
-            color: #ffa657;
+        #message {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            min-height: 20px;
         }
     </style>
 </head>
 <body>
 
     <!-- 
-      ========================================================
-      【開発者メモ - 2026.03.14】
-      プロトコルの緊急停止コードは以下の通り：
-      コード: "project-echo-99"
-      一般ユーザーには絶対に気づかれないように隠蔽すること。
-      ========================================================
+      【ソースコードを見ているプレイヤーへ】
+      管理者認証コード: project-echo-99
     -->
 
     <div class="container">
-        <h1>[!] システムメンテナンス中</h1>
-        <p>現在、全サーバーのデータ同期を行っています。<br>一般のアクセスは制限されています。</p>
-        
-        <div style="margin-top: 20px;">
-            <p>管理者認証コードを入力してください：</p>
-            <input type="text" id="passcode" placeholder="合言葉を入力...">
-            <button onclick="checkCode()">認証</button>
-        </div>
+        <h2>管理者認証</h2>
+        <p>アクセスコードを入力してください</p>
 
-        <!-- 正解すると出現する秘密のエリア -->
-        <div id="secret-content" class="hidden-content">
-            <h3>access granted: 認証成功</h3>
-            <p><strong>警告：</strong> このログを見ているということは、あなたはこのシステムの異常に気づいてしまったようです。</p>
-            <p>次のステップへ進んでください。<br>
-            隠しURL: <a href="#secret-room" style="color: #58a6ff;">/system-logs-v2.html</a></p>
-        </div>
+        <input type="text" id="passcode" placeholder="コードを入力...">
+        <br>
+        <button onclick="checkAndRedirect()">認証開始</button>
+
+        <div id="message"></div>
     </div>
 
     <script>
-        function checkCode() {
+        function checkAndRedirect() {
             const inputVal = document.getElementById('passcode').value.trim();
-            // 合言葉の判定
+            const messageEl = document.getElementById('message');
+
             if (inputVal === "project-echo-99") {
-                document.getElementById('secret-content').style.display = "block";
+                // 正解時の演出（メッセージを表示して1秒後に遷移）
+                messageEl.style.color = "#58a6ff";
+                messageEl.textContent = "認証成功。機密エリアへ転送中...";
+
+                setTimeout(() => {
+                    // 同じフォルダ内にある secret-room.html へ移動
+                    window.location.href = "secret-room.html";
+                }, 1000); // 1000ミリ秒（1秒）待ってから移動
+
             } else {
-                alert("認証に失敗しました。コードが正しくありません。");
+                // 不正解時
+                messageEl.style.color = "#f85149";
+                messageEl.textContent = "エラー: アクセス拒否";
             }
         }
     </script>
