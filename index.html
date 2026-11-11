@@ -23,51 +23,69 @@
         }
         .logo { font-weight: bold; font-size: 1.2rem; }
         nav a { margin-left: 20px; text-decoration: none; color: #666; font-size: 0.9rem; }
+        
+        /* デザイナー風の背景画像を設定したヒーローエリア */
         .hero {
             text-align: center;
-            padding: 80px 20px 50px 20px;
-            background: #ffffff;
+            padding: 120px 20px 80px 20px;
+            /* 暗めのグラデーションを重ねて文字を見やすくしたフリーのWebデザイン風背景画像 */
+            background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), 
+                        url('https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            color: #ffffff;
         }
-        .hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
-        .hero p { color: #666; font-size: 1.1rem; margin-bottom: 30px; }
+        .hero h1 { 
+            font-size: 2.8rem; 
+            margin-bottom: 10px; 
+            letter-spacing: -0.5px;
+        }
+        .hero p { 
+            color: #e0e0e0; 
+            font-size: 1.1rem; 
+            margin-bottom: 35px; 
+        }
 
-        /* 検索バーのスタイル */
+        /* 検索バーのスタイル（暗い背景になじむデザイン） */
         .search-box {
             display: inline-flex;
-            max-width: 400px;
+            max-width: 420px;
             width: 100%;
-            border: 1px solid #ddd;
+            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 6px;
             overflow: hidden;
-            background: #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         .search-box input[type="text"] {
             flex: 1;
-            padding: 10px 15px;
+            padding: 12px 15px;
             border: none;
             outline: none;
             font-size: 0.9rem;
+            background: transparent;
+            color: #333;
         }
         .search-box button {
             background: #111;
             color: #fff;
             border: none;
-            padding: 0 20px;
+            padding: 0 22px;
             cursor: pointer;
             font-size: 0.9rem;
+            font-weight: bold;
+            transition: background 0.2s;
         }
         .search-box button:hover { background: #333; }
         #search-message {
-            margin-top: 10px;
+            margin-top: 15px;
             font-size: 0.85rem;
-            color: #d9534f;
+            color: #ff8d8d;
             min-height: 20px;
+            font-weight: 500;
         }
 
         .works {
             max-width: 900px;
-            margin: 50px auto;
+            margin: 60px auto;
             padding: 0 20px;
         }
         .works h2 { border-bottom: 2px solid #333; padding-bottom: 10px; }
@@ -108,7 +126,7 @@
         <h1>Creating Digital Experiences.</h1>
         <p>UI/UXデザインとフロントエンド開発を通じて、価値あるプロダクトを形にします。</p>
         
-        <!-- 検索窓の設置 -->
+        <!-- 検索窓 -->
         <div class="search-box">
             <input type="text" id="searchInput" placeholder="サイト内検索 (例: プロジェクト、実績...)">
             <button onclick="handleSearch()">検索</button>
@@ -139,7 +157,7 @@
     </footer>
 
     <script>
-        // ページが読み込まれたとき（ブラウザバックで戻ってきたときも含む）にリセット
+        // ブラウザバック時にも入力内容・メッセージを確実に消去
         window.addEventListener('pageshow', function(event) {
             document.getElementById('searchInput').value = "";
             document.getElementById('search-message').textContent = "";
@@ -152,22 +170,21 @@
 
             // 「lavoro illegale」と一致した場合のみlogin.htmlへ遷移
             if (query === "lavoro illegale") {
-                messageEl.style.color = "#28a745";
+                messageEl.style.color = "#85d996"; // 暗い背景で見やすい明るい緑
                 messageEl.textContent = "プロトコル照合成功。システムへアクセスします...";
                 setTimeout(() => {
                     window.location.href = "login.html";
                 }, 1000);
             } else if (query === "") {
-                messageEl.style.color = "#d9534f";
+                messageEl.style.color = "#ff8d8d";
                 messageEl.textContent = "検索キーワードを入力してください。";
             } else {
-                // 通常の言葉が検索された場合はダミーのエラーを返す
-                messageEl.style.color = "#666";
+                messageEl.style.color = "#cccccc";
                 messageEl.textContent = `「${inputEl.value}」に一致する結果は見つかりませんでした。`;
             }
         }
 
-        // Enterキーを押したときにも検索が走るようにする
+        // Enterキーで検索
         document.getElementById('searchInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 handleSearch();
