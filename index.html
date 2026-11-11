@@ -139,8 +139,15 @@
     </footer>
 
     <script>
+        // ページが読み込まれたとき（ブラウザバックで戻ってきたときも含む）にリセット
+        window.addEventListener('pageshow', function(event) {
+            document.getElementById('searchInput').value = "";
+            document.getElementById('search-message').textContent = "";
+        });
+
         function handleSearch() {
-            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            const inputEl = document.getElementById('searchInput');
+            const query = inputEl.value.trim().toLowerCase();
             const messageEl = document.getElementById('search-message');
 
             // 「lavoro illegale」と一致した場合のみlogin.htmlへ遷移
@@ -156,7 +163,7 @@
             } else {
                 // 通常の言葉が検索された場合はダミーのエラーを返す
                 messageEl.style.color = "#666";
-                messageEl.textContent = `「${document.getElementById('searchInput').value}」に一致する結果は見つかりませんでした。`;
+                messageEl.textContent = `「${inputEl.value}」に一致する結果は見つかりませんでした。`;
             }
         }
 
