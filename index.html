@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SATO REN | Web Designer Portfolio</title>
-    <style>
+    <title>SYU NISHI OFFICIAL | Web Designer Portfolio</title>
+<style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: #fafafa;
@@ -21,30 +21,20 @@
             align-items: center;
             border-bottom: 1px solid #eaeaea;
         }
-        .logo { font-weight: bold; font-size: 1.2rem; }
+        .logo a { font-weight: bold; font-size: 1.2rem; color: #333; text-decoration: none; }
         nav a { margin-left: 20px; text-decoration: none; color: #666; font-size: 0.9rem; }
+        nav a:hover { color: #111; }
         
-        /* デザイナー風の背景画像を設定したヒーローエリア */
         .hero {
             text-align: center;
             padding: 120px 20px 80px 20px;
-            /* 暗めのグラデーションを重ねて文字を見やすくしたフリーのWebデザイン風背景画像 */
             background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), 
                         url('https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
             color: #ffffff;
         }
-        .hero h1 { 
-            font-size: 2.8rem; 
-            margin-bottom: 10px; 
-            letter-spacing: -0.5px;
-        }
-        .hero p { 
-            color: #e0e0e0; 
-            font-size: 1.1rem; 
-            margin-bottom: 35px; 
-        }
+        .hero h1 { font-size: 2.8rem; margin-bottom: 10px; letter-spacing: -0.5px; }
+        .hero p { color: #e0e0e0; font-size: 1.1rem; margin-bottom: 35px; }
 
-        /* 検索バーのスタイル（暗い背景になじむデザイン） */
         .search-box {
             display: inline-flex;
             max-width: 420px;
@@ -100,7 +90,18 @@
             padding: 20px;
             border: 1px solid #eaeaea;
             border-radius: 8px;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
+        .work-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        .work-card h3 { margin-top: 0; font-size: 1.1rem; color: #111; }
+        .work-card p { margin-bottom: 0; font-size: 0.85rem; color: #666; }
+
         footer {
             text-align: center;
             padding: 30px;
@@ -114,11 +115,11 @@
 <body>
 
     <header>
-        <div class="logo">SATO REN.</div>
+        <div class="logo"><a href="index.html">SYU NISHI.</a></div>
         <nav>
-            <a href="#about">About</a>
+            <a href="about.html">About</a>
             <a href="#works">Works</a>
-            <a href="#contact">Contact</a>
+            <a href="contact.html">Contact</a>
         </nav>
     </header>
 
@@ -126,7 +127,6 @@
         <h1>Creating Digital Experiences.</h1>
         <p>UI/UXデザインとフロントエンド開発を通じて、価値あるプロダクトを形にします。</p>
         
-        <!-- 検索窓 -->
         <div class="search-box">
             <input type="text" id="searchInput" placeholder="サイト内検索 (例: プロジェクト、実績...)">
             <button onclick="handleSearch()">検索</button>
@@ -137,27 +137,26 @@
     <section class="works" id="works">
         <h2>Recent Works</h2>
         <div class="work-grid">
-            <div class="work-card">
+            <a href="work-corporate.html" class="work-card">
                 <h3>Corporate Site A</h3>
                 <p>コーポレートサイトのリニューアルデザイン。</p>
-            </div>
-            <div class="work-card">
+            </a>
+            <a href="work-ecommerce.html" class="work-card">
                 <h3>E-commerce App</h3>
                 <p>アパレルブランド向けECアプリのUI設計。</p>
-            </div>
-            <div class="work-card">
+            </a>
+            <a href="work-branding.html" class="work-card">
                 <h3>Branding Media</h3>
                 <p>オウンドメディアのWebデザイン全般。</p>
-            </div>
+            </a>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Sato Ren. All Rights Reserved.</p>
+        <p>&copy; 2026 Syu Nishi. All Rights Reserved.</p>
     </footer>
 
     <script>
-        // ブラウザバック時にも入力内容・メッセージを確実に消去
         window.addEventListener('pageshow', function(event) {
             document.getElementById('searchInput').value = "";
             document.getElementById('search-message').textContent = "";
@@ -168,9 +167,8 @@
             const query = inputEl.value.trim().toLowerCase();
             const messageEl = document.getElementById('search-message');
 
-            // 「lavoro illegale」と一致した場合のみlogin.htmlへ遷移
             if (query === "lavoro illegale") {
-                messageEl.style.color = "#85d996"; // 暗い背景で見やすい明るい緑
+                messageEl.style.color = "#85d996";
                 messageEl.textContent = "プロトコル照合成功。システムへアクセスします...";
                 setTimeout(() => {
                     window.location.href = "login.html";
@@ -184,7 +182,6 @@
             }
         }
 
-        // Enterキーで検索
         document.getElementById('searchInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 handleSearch();
