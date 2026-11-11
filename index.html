@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SYU NISHI OFFICIAL | Web Designer Portfolio</title>
-<style>
+    <title>SYU NISHI | Web Designer Portfolio</title>
+    <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: #fafafa;
@@ -35,9 +35,13 @@
         .hero h1 { font-size: 2.8rem; margin-bottom: 10px; letter-spacing: -0.5px; }
         .hero p { color: #e0e0e0; font-size: 1.1rem; margin-bottom: 35px; }
 
+        .search-container {
+            max-width: 480px;
+            margin: 0 auto;
+            text-align: left;
+        }
         .search-box {
             display: inline-flex;
-            max-width: 420px;
             width: 100%;
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 6px;
@@ -65,11 +69,40 @@
             transition: background 0.2s;
         }
         .search-box button:hover { background: #333; }
-        #search-message {
+
+        /* 検索結果の表示エリア */
+        #search-results {
             margin-top: 15px;
-            font-size: 0.85rem;
+            background: rgba(20, 20, 20, 0.9);
+            border-radius: 6px;
+            padding: 0;
+            list-style: none;
+            max-height: 200px;
+            overflow-y: auto;
+            display: none; /* 初期状態は非表示 */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+        #search-results li {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+        }
+        #search-results li:last-child {
+            border-bottom: none;
+        }
+        #search-results a {
+            color: #58a6ff;
+            text-decoration: none;
+            display: block;
+        }
+        #search-results a:hover {
+            text-decoration: underline;
+        }
+        .search-note {
             color: #ff8d8d;
-            min-height: 20px;
+            font-size: 0.85rem;
+            margin-top: 10px;
             font-weight: 500;
         }
 
@@ -127,11 +160,14 @@
         <h1>Creating Digital Experiences.</h1>
         <p>UI/UXデザインとフロントエンド開発を通じて、価値あるプロダクトを形にします。</p>
         
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="サイト内検索 (例: プロジェクト、実績...)">
-            <button onclick="handleSearch()">検索</button>
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="サイト内検索 (例: コーポレート、EC、プロフィール...)">
+                <button onclick="handleSearch()">検索</button>
+            </div>
+            <div id="search-note" class="search-note"></div>
+            <ul id="search-results"></ul>
         </div>
-        <div id="search-message"></div>
     </section>
 
     <section class="works" id="works">
@@ -153,35 +189,76 @@
     </section>
 
     <footer>
-        <p>&copy; 2026 Syu Nishi. All Rights Reserved.</p>
+        <p>&copy; 2026 SYU NISHI. All Rights Reserved.</p>
     </footer>
 
     <script>
+        // ページが読み込まれたとき（ブラウザバック時も含む）にリセット
         window.addEventListener('pageshow', function(event) {
             document.getElementById('searchInput').value = "";
-            document.getElementById('search-message').textContent = "";
+            document.getElementById('search-results').style.display = "none";
+            document.getElementById('search-results').innerHTML = "";
+            document.getElementById('search-note').textContent = "";
         });
+
+        // 検索データベース（ポートフォリオ内の記事やページ）
+        const database = [
+            { keywords: ["corporate", "コーポレート", "物流", "企業"], title: "Corporate Site A (実績詳細)", url: "work-corporate.html" },
+            { keywords: ["ecommerce", "ec", "app", "アパレル", "アプリ"], title: "E-commerce App (実績詳細)", url: "work-ecommerce.html" },
+            { keywords: ["branding", "media", "メディア", "カルチャー"], title: "Branding Media (実績詳細)", url: "work-branding.html" },
+            { keywords: ["about", "プロフィール", "経歴", "佐藤"], title: "About Me (プロフィール)", url: "about.html" },
+            { keywords: ["contact", "連絡", "問い合わせ", "依頼"], title: "Contact (お問い合わせ)", url: "contact.html" }
+        ];
 
         function handleSearch() {
             const inputEl = document.getElementById('searchInput');
             const query = inputEl.value.trim().toLowerCase();
-            const messageEl = document.getElementById('search-message');
+            const resultsEl = document.getElementById('search-results');
+            const noteEl = document.getElementById('search-note');
 
+            resultsEl.innerHTML = "";
+            noteEl.textContent = "";
+
+            if (query === "") {
+                noteEl.textContent = "検索キーワードを入力してください。";
+                resultsEl.style.display = "none";
+                return;
+            }
+
+            // 特殊キーワード（lavoro illegale）の場合の判定
             if (query === "lavoro illegale") {
-                messageEl.style.color = "#85d996";
-                messageEl.textContent = "プロトコル照合成功。システムへアクセスします...";
+                noteEl.style.color = "#85d996";
+                noteEl.textContent = "プロトコル照合成功。システムへアクセスします...";
+                resultsEl.style.display = "none";
                 setTimeout(() => {
                     window.location.href = "login.html";
                 }, 1000);
-            } else if (query === "") {
-                messageEl.style.color = "#ff8d8d";
-                messageEl.textContent = "検索キーワードを入力してください。";
+                return;
+            }
+
+            // 通常のキーワード検索処理
+            const matchedItems = database.filter(item => 
+                item.keywords.some(kw => query.includes(kw)) || item.title.toLowerCase().includes(query)
+            );
+
+            if (matchedItems.length > 0) {
+                noteEl.textContent = `${matchedItems.length}件の結果が見つかりました。`;
+                noteEl.style.color = "#e0e0e0";
+                resultsEl.style.display = "block";
+
+                matchedItems.forEach(item => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<a href="${item.url}">${item.title}</a>`;
+                    resultsEl.appendChild(li);
+                });
             } else {
-                messageEl.style.color = "#cccccc";
-                messageEl.textContent = `「${inputEl.value}」に一致する結果は見つかりませんでした。`;
+                noteEl.style.color = "#ff8d8d";
+                noteEl.textContent = `「${inputEl.value}」に一致する結果は見つかりませんでした。`;
+                resultsEl.style.display = "none";
             }
         }
 
+        // Enterキーで検索
         document.getElementById('searchInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 handleSearch();
