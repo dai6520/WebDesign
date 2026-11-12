@@ -1,0 +1,138 @@
+/* style.css */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #fafafa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+header {
+    background: #fff;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eaeaea;
+}
+.logo a { font-weight: bold; font-size: 1.2rem; color: #333; text-decoration: none; }
+nav a { margin-left: 20px; text-decoration: none; color: #666; font-size: 0.9rem; }
+nav a:hover { color: #111; }
+
+.hero {
+    text-align: center;
+    padding: 120px 20px 80px 20px;
+    background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), 
+                url('https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+    color: #ffffff;
+}
+.hero h1 { font-size: 2.8rem; margin-bottom: 10px; letter-spacing: -0.5px; }
+.hero p { color: #e0e0e0; font-size: 1.1rem; margin-bottom: 35px; }
+
+.search-container {
+    max-width: 480px;
+    margin: 0 auto;
+    text-align: left;
+}
+.search-box {
+    display: inline-flex;
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 6px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.search-box input[type="text"] {
+    flex: 1;
+    padding: 12px 15px;
+    border: none;
+    outline: none;
+    font-size: 0.9rem;
+    background: transparent;
+    color: #333;
+}
+.search-box button {
+    background: #111;
+    color: #fff;
+    border: none;
+    padding: 0 22px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+.search-box button:hover { background: #333; }
+
+#search-results {
+    margin-top: 15px;
+    background: rgba(20, 20, 20, 0.9);
+    border-radius: 6px;
+    padding: 0;
+    list-style: none;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.15);
+}
+#search-results li {
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.9rem;
+}
+#search-results li:last-child {
+    border-bottom: none;
+}
+#search-results a {
+    color: #58a6ff;
+    text-decoration: none;
+    display: block;
+}
+#search-results a:hover {
+    text-decoration: underline;
+}
+.search-note {
+    color: #ff8d8d;
+    font-size: 0.85rem;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+.works {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+.works h2 { border-bottom: 2px solid #333; padding-bottom: 10px; }
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+.work-card {
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #eaeaea;
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.work-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+.work-card h3 { margin-top: 0; font-size: 1.1rem; color: #111; }
+.work-card p { margin-bottom: 0; font-size: 0.85rem; color: #666; }
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #999;
+    font-size: 0.8rem;
+    margin-top: 80px;
+    border-top: 1px solid #eaeaea;
+}
