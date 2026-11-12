@@ -24,7 +24,8 @@
         
         <div class="search-container">
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="サイト内検索 (例: コーポレート、EC、プロフィール...)">
+                <!-- autocomplete="off" を追加することでブラウザの履歴候補を非表示にする -->
+                <input type="text" id="searchInput" placeholder="サイト内検索" autocomplete="off">
                 <button onclick="handleSearch()">検索</button>
             </div>
             <div id="search-note" class="search-note"></div>
