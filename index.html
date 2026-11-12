@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JHON NISHI | Web Designer Portfolio</title>
+    <title>SYU NISHI | Web Designer Portfolio</title>
     <!-- 外部CSSの読み込み -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header>
-        <div class="logo"><a href="index.html">JHON NISHI.</a></div>
+        <div class="logo"><a href="index.html">SYU NISHI.</a></div>
         <nav>
             <a href="about.html">About</a>
             <a href="#works">Works</a>
+            <a href="#skills">Skills</a>
             <a href="contact.html">Contact</a>
         </nav>
     </header>
@@ -24,8 +25,7 @@
         
         <div class="search-container">
             <div class="search-box">
-                <!-- autocomplete="off" を追加することでブラウザの履歴候補を非表示にする -->
-                <input type="text" id="searchInput" placeholder="サイト内検索" autocomplete="off">
+                <input type="text" id="searchInput" placeholder="サイト内検索 (例: コーポレート、EC、プロフィール...)" autocomplete="off">
                 <button onclick="handleSearch()">検索</button>
             </div>
             <div id="search-note" class="search-note"></div>
@@ -33,26 +33,67 @@
         </div>
     </section>
 
+    <!-- About 概要セクション -->
+    <section class="about-summary" style="max-width: 900px; margin: 60px auto; padding: 0 20px; text-align: center;">
+        <h2>About Me</h2>
+        <p style="color: #666; max-width: 700px; margin: 20px auto; line-height: 1.8;">
+            都内を中心にフリーランスのWebデザイナー／フロントエンドエンジニアとして活動しています。
+            ユーザービリティを最優先に考えた設計と、細部までこだわり抜いたインタラクティブな実装を得意としています。
+        </p>
+    </section>
+
+    <!-- Works 実績セクション（数を拡充） -->
     <section class="works" id="works">
         <h2>Recent Works</h2>
         <div class="work-grid">
             <a href="work-corporate.html" class="work-card">
                 <h3>Corporate Site A</h3>
-                <p>コーポレートサイトのリニューアルデザイン。</p>
+                <p>大手物流企業のブランディングリニューアル。信頼性と先進性を両立したUIデザイン。</p>
             </a>
             <a href="work-ecommerce.html" class="work-card">
                 <h3>E-commerce App</h3>
-                <p>アパレルブランド向けECアプリのUI設計。</p>
+                <p>アパレルブランド向けECモバイルアプリ。チェックアウトフローの最適化でCVRを改善。</p>
             </a>
             <a href="work-branding.html" class="work-card">
                 <h3>Branding Media</h3>
-                <p>オウンドメディアのWebデザイン全般。</p>
+                <p>カルチャー系Webメディアの立ち上げ。タイポグラフィを活かした力強いビジュアル表現。</p>
+            </a>
+            <a href="work-corporate.html" class="work-card">
+                <h3>Fintech Dashboard</h3>
+                <p>資産管理SaaSのUI/UX設計。複雑なデータを直感的に把握できるダッシュボードを構築。</p>
+            </a>
+            <a href="work-ecommerce.html" class="work-card">
+                <h3>Design System</h3>
+                <p>複数プロダクトで共通利用するコンポーネントライブラリの設計およびフロントエンド実装。</p>
+            </a>
+            <a href="work-branding.html" class="work-card">
+                <h3>Artisan Portfolio</h3>
+                <p>伝統工芸職人のためのポートフォリオサイト。素材の質感を伝えるミニマルなデザイン。</p>
             </a>
         </div>
     </section>
 
+    <!-- Skills スキルセクションを追加 -->
+    <section class="skills-section" id="skills" style="max-width: 900px; margin: 80px auto; padding: 0 20px;">
+        <h2>Expertise & Skills</h2>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 30px;">
+            <div style="background: #fff; padding: 25px; border: 1px solid #eaeaea; border-radius: 8px;">
+                <h3 style="margin-top: 0; font-size: 1.1rem;">UI/UX Design</h3>
+                <p style="font-size: 0.9rem; color: #666; margin-bottom: 0;">Figma / Adobe XD を活用したワイヤーフレーム作成、プロトタイピング、デザインシステム構築。</p>
+            </div>
+            <div style="background: #fff; padding: 25px; border: 1px solid #eaeaea; border-radius: 8px;">
+                <h3 style="margin-top: 0; font-size: 1.1rem;">Frontend Dev</h3>
+                <p style="font-size: 0.9rem; color: #666; margin-bottom: 0;">HTML5 / CSS3 / JavaScript (ES6+) / React を用いたセマンティックかつ高速な実装。</p>
+            </div>
+            <div style="background: #fff; padding: 25px; border: 1px solid #eaeaea; border-radius: 8px;">
+                <h3 style="margin-top: 0; font-size: 1.1rem;">Direction</h3>
+                <p style="font-size: 0.9rem; color: #666; margin-bottom: 0;">要件定義から情報設計、進行管理、公開後のメンテナンスまでワンストップで対応。</p>
+            </div>
+        </div>
+    </section>
+
     <footer>
-        <p>&copy; 2026 Jhon Nishi. All Rights Reserved.</p>
+        <p>&copy; 2026 Syu Nishi. All Rights Reserved.</p>
     </footer>
 
     <!-- 外部検索データベースの読み込み -->
