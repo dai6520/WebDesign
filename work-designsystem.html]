@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design System | JHON NISHI</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #fafafa; color: #333; margin: 0; line-height: 1.6; }
+        header { background: #fff; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eaeaea; }
+        .logo a { font-weight: bold; font-size: 1.2rem; color: #333; text-decoration: none; }
+        nav a { margin-left: 20px; text-decoration: none; color: #666; font-size: 0.9rem; }
+        .container { max-width: 800px; margin: 60px auto; padding: 40px; background: #fff; border: 1px solid #eaeaea; border-radius: 8px; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #666; text-decoration: none; font-size: 0.9rem; }
+        h1 { margin-top: 0; font-size: 1.8rem; }
+        .meta { color: #888; font-size: 0.85rem; margin-bottom: 30px; }
+        .content img { width: 100%; border-radius: 6px; margin-bottom: 20px; }
+        .project-details { margin-top: 30px; }
+        .project-details h3 { border-left: 3px solid #111; padding-left: 10px; margin-top: 25px; }
+        .secret-hint { background: #f4f4f4; padding: 15px; border-radius: 4px; font-family: monospace; font-size: 0.85rem; color: #444; margin-top: 25px; border-left: 3px solid #666; }
+        footer { text-align: center; padding: 30px; color: #999; font-size: 0.8rem; margin-top: 80px; border-top: 1px solid #eaeaea; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="index.html">JHON NISHI.</a></div>
+        <nav>
+            <a href="about.html">About</a>
+            <a href="index.html#works">Works</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <div class="container">
+        <a href="index.html#works" class="back-link">&larr; Works一覧へ戻る</a>
+        <h1>Design System</h1>
+        <div class="meta">Category: Frontend / Design System / Client: Nexus Cloud Inc. / Year: 2026</div>
+        <div class="content">
+            <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1000&q=80" alt="Design System">
+            
+            <div class="project-details">
+                <h3>概要</h3>
+                <p>複数のWebアプリケーションを横断して展開する、全社共通のデザインシステムおよびコンポーネントライブラリの構築プロジェクト。Figma上のトークン管理から、Reactによるコンポーネント実装までを一貫して担当しました。</p>
+                
+                <h3>成果とアプローチ</h3>
+                <p>ボタン、フォーム、モーダルなどの基本要素を原子単位（Atomic Design）で整理。開発チームとデザインチーム間の共通言語を統一し、UI実装にかかるリードタイムを約40%削減しました。</p>
+                
+                <div class="secret-hint">
+                    // Internal Note: 開発環境の管理用プロトコル<br>
+                    // 外部委託先の監査ログを参照するには、トップページの検索窓にシークレットキーを入力してください。
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>&copy; 2026 Jhon Nishi. All Rights Reserved.</footer>
+</body>
+</html>
