@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog | SYU NISHI</title>
+    <title>Internal Memo | JHON NISHI</title>
     <link rel="stylesheet" href="style.css">
     <style>
         .blog-container {
@@ -11,28 +11,60 @@
             margin: 60px auto;
             padding: 0 20px;
         }
+        /* 日付ナビゲーションバー */
+        .date-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+        .date-nav button {
+            background: #111;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .date-nav button:hover:not(:disabled) {
+            background: #333;
+        }
+        .date-nav button:disabled {
+            background: #e0e0e0;
+            color: #999;
+            cursor: not-allowed;
+        }
+        #currentDateDisplay {
+            font-weight: bold;
+            font-size: 1rem;
+            color: #111;
+        }
+        /* 記事カード */
         .blog-post {
             background: #fff;
             border: 1px solid #eaeaea;
             border-radius: 8px;
-            padding: 30px;
-            margin-bottom: 30px;
+            padding: 40px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-        }
-        .blog-date {
-            font-size: 0.8rem;
-            color: #888;
-            margin-bottom: 8px;
+            min-height: 220px;
         }
         .blog-post h2 {
             margin-top: 0;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: #111;
         }
         .blog-post p {
             color: #555;
             font-size: 0.95rem;
-            line-height: 1.7;
+            line-height: 1.8;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -41,7 +73,7 @@
     <header>
         <div class="logo"><a href="index.html">SYU NISHI.</a></div>
         <nav>
-            <a href="blog.html" style="color:#111; font-weight:bold;">Blog</a>
+            <a href="internal-memo.html" style="color:#111; font-weight:bold;">Memo</a>
             <a href="about.html">About</a>
             <a href="index.html#works">Works</a>
             <a href="contact.html">Contact</a>
@@ -49,31 +81,77 @@
     </header>
 
     <div class="blog-container">
-        <h1>Syu Nishi's Blog</h1>
-        <p style="color: #666; margin-bottom: 40px; font-size: 0.9rem;">デザイン、フロントエンド開発、日々の思考の記録。</p>
+        <h1 style="margin-bottom: 10px;">Internal Working Memo</h1>
+        <p style="color: #666; margin-bottom: 30px; font-size: 0.9rem;">個人開発の進捗および内部ログのアーカイブレコード。</p>
 
-        <div class="blog-post">
-            <div class="blog-date">2026.11.14</div>
-            <h2>個人ブログサイトをリニューアル中</h2>
-            <p>
-                現在、ポートフォリオとは別に、日々の技術的気付きやデザインに関する思考をまとめるための個人ブログを構築しています。
-                コンポーネント設計の一貫性を保ちつつ、シンプルで読みやすいタイポグラフィを追求中。完成まであと少しです。
-            </p>
+        <!-- 日付ナビゲーション -->
+        <div class="date-nav">
+            <button id="prevBtn" onclick="changePost(-1)">&larr; 前の日付</button>
+            <span id="currentDateDisplay">----.--.--</span>
+            <button id="nextBtn" onclick="changePost(1)">次の日付 &rarr;</button>
         </div>
 
-        <div class="blog-post">
-            <div class="blog-date">2026.11.02</div>
-            <h2>デザインシステム導入における学び</h2>
-            <p>
-                複数のプロジェクトを並行して進める中で、共通のトークンやコンポーネントを定義することの重要性を改めて実感しています。
-                特にAtomic Designの階層構造を取り入れたことで、チーム間のコミュニケーションコストが劇的に削減されました。
-            </p>
+        <!-- 記事表示エリア -->
+        <div class="blog-post" id="postArea">
+            <h2 id="postTitle">読み込み中...</h2>
+            <p id="postContent">データを展開しています。</p>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Syu Nishi. All Rights Reserved.</p>
+        <p>&copy; 2026 Jhon Nishi. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        // ブログ記事のデータベース（古い順に並べておくのがおすすめ）
+        const posts = [
+            {
+                date: "2026-11-02",
+                title: "デザインシステム導入における学び",
+                content: "複数のプロジェクトを並行して進める中で、共通のトークンやコンポーネントを定義することの重要性を改めて実感しています。特にAtomic Designの階層構造を取り入れたことで、チーム間のコミュニケーションコストが劇的に削減されました。"
+            },
+            {
+                date: "2026-11-08",
+                title: "認証プロトコルのセキュリティ見直し",
+                content: "検索インデックスからの意図しないアクセスを防ぐため、一部の裏ルート（maintenance系）のパスコード照合ロジックを強化。また、ブラウザバック時のキャッシュクリア処理の挙動を全ページで統一した。"
+            },
+            {
+                date: "2026-11-14",
+                title: "個人ブログサイトをリニューアル中",
+                content: "現在、ポートフォリオとは別に、日々の技術的気付きやデザインに関する思考をまとめるための個人ブログを構築しています。コンポーネント設計の一貫性を保ちつつ、シンプルで読みやすいタイポグラフィを追求中。完成まであと少しです。"
+            }
+        ];
+
+        // 現在表示している記事のインデックス（初期値は一番新しい最後の記事）
+        let currentIndex = posts.length - 1;
+
+        function renderPost() {
+            const post = posts[currentIndex];
+            
+            // 日付・タイトル・内容を反映
+            document.getElementById('currentDateDisplay').textContent = post.date.replace(/-/g, '.');
+            document.getElementById('postTitle').textContent = post.title;
+            document.getElementById('postContent').textContent = post.content;
+
+            // ボタンの有効・無効切り替え（端に達したらボタンをグレーアウト）
+            document.getElementById('prevBtn').disabled = (currentIndex === 0);
+            document.getElementById('nextBtn').disabled = (currentIndex === posts.length - 1);
+        }
+
+        function changePost(direction) {
+            currentIndex += direction;
+            // 範囲外に行かないように制限
+            if (currentIndex < 0) currentIndex = 0;
+            if (currentIndex >= posts.length) currentIndex = posts.length - 1;
+            
+            renderPost();
+        }
+
+        // ページ読み込み時に最初の記事を表示
+        window.addEventListener('DOMContentLoaded', () => {
+            renderPost();
+        });
+    </script>
 
 </body>
 </html>
