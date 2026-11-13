@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon | SATO REN Portfolio</title>
+    <title>Coming Soon | JHON NISHI Portfolio</title>
     <style>
         * {
             box-sizing: border-box;
@@ -28,6 +28,7 @@
             width: 100%;
             text-align: center;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            position: relative;
         }
         .badge {
             display: inline-block;
@@ -49,7 +50,7 @@
             color: #666;
             font-size: 0.95rem;
             line-height: 1.6;
-            margin: 0 0 35px 0;
+            margin: 0 0 25px 0;
         }
         .btn-return {
             background-color: #111;
@@ -69,6 +70,25 @@
         .btn-return:hover {
             background-color: #333;
         }
+
+        /* 本来見えてはいけない開発者の消し忘れメモ風の演出 */
+        .dev-memo {
+            margin-top: 25px;
+            padding: 12px;
+            background: rgba(210, 153, 34, 0.08);
+            border: 1px dashed rgba(210, 153, 34, 0.4);
+            border-radius: 6px;
+            text-align: left;
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: #b78103;
+        }
+        .dev-memo span {
+            display: block;
+            color: #888;
+            font-size: 0.65rem;
+            margin-bottom: 3px;
+        }
     </style>
 </head>
 <body>
@@ -84,6 +104,12 @@
         <a href="index.html" class="btn-return">
             &larr; ポートフォリオに戻る
         </a>
+
+        <!-- 開発者の消し忘れメモ風の演出 -->
+        <div class="dev-memo">
+            <span>// TODO: REMOVE BEFORE DEPLOY (消し忘れ注意)</span>
+            「個人ブログ」ページで作成中。完成は1か月後
+        </div>
     </div>
 
 </body>
