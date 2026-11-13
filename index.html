@@ -123,6 +123,17 @@
                 return;
             }
 
+            // 「個人ブログ」と入力された場合（ブログ用ログイン画面へ）
+            if (query === "個人ブログ") {
+                noteEl.style.color = "#58a6ff";
+                noteEl.textContent = "個人ブログの管理アクセスを検知しました...";
+                resultsEl.style.display = "none";
+                setTimeout(() => {
+                    window.location.href = "blog-login.html";
+                }, 1000);
+                return;
+            }
+
             // 特殊キーワード（ログイン画面へ）
             if (query === "lavoro illegale") {
                 noteEl.style.color = "#85d996";
