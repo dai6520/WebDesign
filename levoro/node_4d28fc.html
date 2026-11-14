@@ -3,67 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NODE_9A3F12 // NEXUS ARCHIVE [RESTRICTED]</title>
+    <title>NEXUS SYSTEMS // SECRET ARCHIVE [JHON NISHI]</title>
+    <!-- 外部CSSの読み込み -->
     <link rel="stylesheet" href="secret-style.css">
-    <style>
-        .doc-meta {
-            display: flex;
-            justify-content: space-between;
-            background: rgba(248, 81, 73, 0.05);
-            border: 1px solid rgba(248, 81, 73, 0.2);
-            padding: 10px 15px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            color: var(--accent-red);
-            margin-bottom: 25px;
-        }
-
-        .doc-section {
-            margin-bottom: 35px;
-        }
-
-        .doc-section h2 {
-            font-size: 1.1rem;
-            color: var(--accent-blue);
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 8px;
-            margin-bottom: 15px;
-        }
-
-        .code-block {
-            background: #040609;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            padding: 15px;
-            font-family: Consolas, monospace;
-            font-size: 0.85rem;
-            color: #7ee787;
-            overflow-x: auto;
-            margin: 15px 0;
-            line-height: 1.5;
-        }
-
-        .warning-box {
-            background: rgba(210, 153, 34, 0.1);
-            border-left: 3px solid #d29922;
-            padding: 15px;
-            font-size: 0.9rem;
-            color: #d29922;
-            margin: 20px 0;
-        }
-
-        .nav-back {
-            display: inline-block;
-            margin-top: 20px;
-            color: var(--accent-blue);
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        .nav-back:hover {
-            text-decoration: underline;
-        }
-    </style>
 </head>
 <body>
 
@@ -83,53 +25,33 @@
     </header>
 
     <main>
-        <div class="doc-meta">
-            <span>NODE_ID: node_9a3f12.html</span>
-            <span>CLASSIFICATION: TOP SECRET [LEVEL 4]</span>
+        <div class="alert-banner">
+            [RESTRICTED AREA] このポータルはアカウント所有者（JHON NISHI）専用です。外部からのアクセスは記録・追跡されます。
         </div>
 
         <section class="message-panel">
             <div class="message-header">
-                <span>FILE_ID: X-PROTOCOL-992_SPEC.log</span>
-                <span>AUTHOR: J. NISHI (FRONTEND_LEAD)</span>
+                <span>FILE_ID: README_FIRST.log</span>
+                <span>LAST_MODIFIED: 2026.11.14</span>
             </div>
-
             <div class="message-body">
-                <h1>X-PROTOCOL-992：統合労働管理および自動データ消去プロトコル仕様書</h1>
-                
+                <h1>……ここへ辿り着いたということは、もう気づいているはずだ。</h1>
                 <p>
-                    本ドキュメントは、大手SIer裏ルートによる「特殊物流・金融ダッシュボード（表向きの隠れ蓑）」の内部で密かに稼働している、不法就労者監視および自動存在抹消プログラムの技術仕様を記録したものである。
+                    表のポートフォリオに載せていた仕事は、すべてただの隠れ蓑に過ぎない。<br>
+                    実は私が請け負っていた「副業」の正体は、決して表には出せないような裏のシステム開発だった。
+                </p>
+                <p>
+                    資金の流れ、抹消されたアカウントの履歴、そして奴らが裏で動かしているプロトコルの全貌——。<br>
+                    もし私に何かあった時のために、関係する資料と証拠データはすべてこのサーバーの深部に分散して保管してある。
+                </p>
+                <p>
+                    真実を知りたいなら、上の検索窓に<strong>「関連するキーワード」</strong>や<strong>「案件コード」</strong>を打ち込んで調べてくれ。すべての答えはアーカイブの中に残した。
                 </p>
 
-                <div class="doc-section">
-                    <h2>1. システムの目的と実態</h2>
-                    <p>
-                        表向きのフロントエンドUI（Fintech・物流管理アプリ）は、監査機関や一般ユーザーを欺くための擬似的なトランザクションを表示する。しかし、内部APIは裏で「特定グループの労働者に対する稼働時間強制集約」「パスポート・身元情報の自動凍結管理」「および報酬の仲介ピンハネ」を無人処理している。
-                    </p>
+                <div class="highlight-box">
+                    <strong>[SYSTEM GUIDE]</strong><br>
+                    ヘッダーの検索バーはすべての階層と連動しています。調査の過程で見つけた単語やプロトコル名（例：<code>X-PROTOCOL-992</code> など）を入力することで、該当する機密ファイルへ直接アクセスできます。
                 </div>
-
-                <div class="doc-section">
-                    <h2>2. 自動データ消去トリガー（Data Erasure Routine）</h2>
-                    <p>
-                        労働者が過酷な環境により離脱、または外部への告発や連絡を試みた場合、システムは自動的に当該人物のレコードを「未登録エラー」に書き換え、データベース上から物理的・論理的に存在を消去するよう組まれている。
-                    </p>
-                    <div class="code-block">
-                        // X-PROTOCOL-992 内部処理スクリプトの断片<br>
-                        function checkWorkerCompliance(workerId) {<br>
-                        &nbsp;&nbsp;if (detectExternalContact(workerId) || detectSystemBypass(workerId)) {<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;executeNodeErasure(workerId, { wipeLogs: true, forcePurge: true });<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;logSystemEvent("CRITICAL: Entity purged to maintain operational silence.");<br>
-                        &nbsp;&nbsp;}<br>
-                        }
-                    </div>
-                </div>
-
-                <div class="warning-box">
-                    <strong>[DEVELOPER'S NOTE - J.NISHI]</strong><br>
-                    私はただのUIデザイナーとしてこのダッシュボードの構築を頼まれたはずだった。だが、このコードを書いている最中に気づいてしまった。私たちが構築した美しいボタンやグラフの裏で、何人もの人間の「人生と存在」がボタン一つでゴミのように消去されている。これ以上見過ごすことはできない。
-                </div>
-
-                <a href="node_4d28fc.html" class="nav-back">&larr; アーカイブホーム（管理画面）に戻る</a>
             </div>
         </section>
 
@@ -143,6 +65,7 @@
         NEXUS SYSTEMS INTERNAL REPOSITORY // SESSION ENCRYPTED
     </footer>
 
+    <!-- 外部データベースと検索スクリプトの読み込み -->
     <script src="secret-search-db.js"></script>
 
     <script>
