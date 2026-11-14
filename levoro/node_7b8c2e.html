@@ -6,75 +6,16 @@
     <title>NODE_7B8C2E // NEXUS ARCHIVE [RESTRICTED]</title>
     <link rel="stylesheet" href="secret-style.css">
     <style>
-        .doc-meta {
-            display: flex;
-            justify-content: space-between;
-            background: rgba(248, 81, 73, 0.05);
-            border: 1px solid rgba(248, 81, 73, 0.2);
-            padding: 10px 15px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            color: var(--accent-red);
-            margin-bottom: 25px;
-        }
-
-        .doc-section {
-            margin-bottom: 35px;
-        }
-
-        .doc-section h2 {
-            font-size: 1.1rem;
-            color: var(--accent-blue);
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 8px;
-            margin-bottom: 15px;
-        }
-
-        .log-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.85rem;
-            margin: 15px 0;
-            background: #040609;
-            border: 1px solid var(--border-color);
-        }
-
-        .log-table th, .log-table td {
-            border: 1px solid var(--border-color);
-            padding: 10px 12px;
-            text-align: left;
-        }
-
-        .log-table th {
-            background: #111622;
-            color: var(--accent-blue);
-        }
-
-        .log-table td {
-            color: #c9d1d9;
-            font-family: Consolas, monospace;
-        }
-
-        .warning-box {
-            background: rgba(210, 153, 34, 0.1);
-            border-left: 3px solid #d29922;
-            padding: 15px;
-            font-size: 0.9rem;
-            color: #d29922;
-            margin: 20px 0;
-        }
-
-        .nav-back {
-            display: inline-block;
-            margin-top: 20px;
-            color: var(--accent-blue);
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        .nav-back:hover {
-            text-decoration: underline;
-        }
+        .doc-meta { display: flex; justify-content: space-between; background: rgba(248, 81, 73, 0.05); border: 1px solid rgba(248, 81, 73, 0.2); padding: 10px 15px; border-radius: 4px; font-size: 0.8rem; color: var(--accent-red); margin-bottom: 25px; }
+        .doc-section { margin-bottom: 35px; }
+        .doc-section h2 { font-size: 1.1rem; color: var(--accent-blue); border-bottom: 1px solid var(--border-color); padding-bottom: 8px; margin-bottom: 15px; }
+        .log-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 15px 0; background: #040609; border: 1px solid var(--border-color); }
+        .log-table th, .log-table td { border: 1px solid var(--border-color); padding: 10px 12px; text-align: left; }
+        .log-table th { background: #111622; color: var(--accent-blue); }
+        .log-table td { color: #c9d1d9; font-family: Consolas, monospace; }
+        .warning-box { background: rgba(210, 153, 34, 0.1); border-left: 3px solid #d29922; padding: 15px; font-size: 0.9rem; color: #d29922; margin: 20px 0; }
+        .nav-back { display: inline-block; margin-top: 20px; color: var(--accent-blue); text-decoration: none; font-size: 0.9rem; }
+        .nav-back:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
@@ -84,7 +25,6 @@
             <a href="node_4d28fc.html" class="brand-title">NEXUS_SYS // ARCHIVE</a>
             <span class="user-badge">AUTH: JHON_NISHI</span>
         </div>
-
         <div class="header-controls">
             <div class="header-search">
                 <input type="text" id="secretSearchInput" placeholder="極秘資料・案件コードで検索..." autocomplete="off">
@@ -100,74 +40,74 @@
             <span>CLASSIFICATION: CONFIDENTIAL / FINANCIAL LEAK</span>
         </div>
 
-        <section class="message-panel">
-            <div class="message-header">
-                <span>FILE_ID: fintech_dummy_routes.log</span>
-                <span>AUTHOR: J. NISHI (DATA RECONSTRUCTION)</span>
-            </div>
-
-            <div class="message-body">
-                <h1>不正送金ルートおよびダミー口座トランザクション履歴</h1>
-                
-                <p>
-                    表向きは大手SIerの「資産管理SaaS（Fintech Dashboard）」として稼働していたモジュールの裏側で、実態のない下請け偽装ペーパーカンパニーを経由し、巨額の資金が海外匿名口座へと流出していた痕跡データ。
-                </p>
-
-                <div class="doc-section">
-                    <h2>1. 資金洗浄（マネーロンダリング）の経路構造</h2>
-                    <p>
-                        労働者たちの未払い賃金や、システム上で不当に徴収された管理手数料は、国内の複数の多重下請け口座（ペーパーカンパニー）を数秒おきにホップし、最終的に追跡不可能なオフショア口座へ集約されている。
-                    </p>
-                    
-                    <table class="log-table">
-                        <thead>
-                            <tr>
-                                <th>Timestamp</th>
-                                <th>Source Node</th>
-                                <th>Destination Shell</th>
-                                <th>Amount (JPY)</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>2026.11.02 04:12</td>
-                                <td>NODE_SUB_04</td>
-                                <td>SH_CORP_TOKYO_99</td>
-                                <td>¥14,200,000</td>
-                                <td style="color: #3fb950;">OBFUSCATED</td>
-                            </tr>
-                            <tr>
-                                <td>2026.11.05 22:45</td>
-                                <td>NODE_SUB_08</td>
-                                <td>KOWLOON_HOLDINGS_X</td>
-                                <span>¥28,950,000</span>
-                                <td style="color: #3fb950;">OBFUSCATED</td>
-                            </tr>
-                            <tr>
-                                <td>2026.11.10 01:30</td>
-                                <td>NODE_FIN_01</td>
-                                <td>OFFSHORE_ANON_04</td>
-                                <td>¥51,000,000</td>
-                                <td style="color: #f85149;">FLAGGED_BY_J</td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <!-- 通常時のメインコンテンツ -->
+        <div id="mainContent">
+            <section class="message-panel">
+                <div class="message-header">
+                    <span>FILE_ID: fintech_dummy_routes.log</span>
+                    <span>AUTHOR: J. NISHI (DATA RECONSTRUCTION)</span>
                 </div>
-
-                <div class="warning-box">
-                    <strong>[DEVELOPER'S NOTE - J.NISHI]</strong><br>
-                    私がデザインを担当したダッシュボードの裏側で、これほど巨大な不正資金の流れが組み込まれていたとは知らなかった。私に依頼してきたディレクターの名前や、上層部の承認スタンプのログもすべてこのファイルにバックアップしてある。
+                <div class="message-body">
+                    <h1>不正送金ルートおよびダミー口座トランザクション履歴</h1>
+                    <p>表向きは大手SIerの「資産管理SaaS」として稼働していたモジュールの裏側で、下請け偽装ペーパーカンパニーを経由し、巨額の資金が海外匿名口座へと流出していた痕跡データ。</p>
+                    <div class="doc-section">
+                        <h2>1. 資金洗浄の経路構造</h2>
+                        <p>労働者たちの未払い賃金やシステム上の手数料は、複数の国内下請け口座を数秒おきにホップし、オフショア口座へ集約されている。</p>
+                        <table class="log-table">
+                            <thead>
+                                <tr>
+                                    <th>Timestamp</th>
+                                    <th>Source Node</th>
+                                    <th>Destination Shell</th>
+                                    <th>Amount (JPY)</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2026.11.02 04:12</td>
+                                    <td>NODE_SUB_04</td>
+                                    <td>SH_CORP_TOKYO_99</td>
+                                    <td>¥14,200,000</td>
+                                    <td style="color: #3fb950;">OBFUSCATED</td>
+                                </tr>
+                                <tr>
+                                    <td>2026.11.05 22:45</td>
+                                    <td>NODE_SUB_08</td>
+                                    <td>KOWLOON_HOLDINGS_X</td>
+                                    <td>¥28,950,000</td>
+                                    <td style="color: #3fb950;">OBFUSCATED</td>
+                                </tr>
+                                <tr>
+                                    <td>2026.11.10 01:30</td>
+                                    <td>NODE_FIN_01</td>
+                                    <td>OFFSHORE_ANON_04</td>
+                                    <td>¥51,000,000</td>
+                                    <td style="color: #f85149;">FLAGGED_BY_J</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="warning-box">
+                        <strong>[DEVELOPER'S NOTE - J.NISHI]</strong><br>
+                        ダッシュボードの裏側でこれほど巨大な不正資金の流れが組み込まれていたとは知らなかった。依頼主のログもすべてこのファイルにバックアップしてある。
+                    </div>
+                    <a href="node_4d28fc.html" class="nav-back">&larr; アーカイブホームに戻る</a>
                 </div>
+            </section>
+        </div>
 
-                <a href="node_4d28fc.html" class="nav-back">&larr; アーカイブホーム（管理画面）に戻る</a>
-            </div>
-        </section>
-
-        <section class="search-feedback">
-            <div id="secretNote"></div>
-            <ul id="secretResults"></ul>
-        </section>
+        <!-- 検索結果ビュー -->
+        <div id="searchView" class="search-view-container">
+            <section class="message-panel">
+                <div class="search-view-header">
+                    <span class="search-view-title" id="searchViewTitle">検索結果</span>
+                    <button class="back-to-home-btn" onclick="closeSearchView()">&larr; 戻る</button>
+                </div>
+                <div id="searchViewNote" style="margin-bottom: 20px; font-size: 0.9rem;"></div>
+                <ul id="searchViewResults" class="search-results-list"></ul>
+            </section>
+        </div>
     </main>
 
     <footer>
@@ -178,17 +118,9 @@
     <script>
         function executeSecretSearch() {
             const inputEl = document.getElementById('secretSearchInput');
+            if (!inputEl) return;
             const rawQuery = inputEl.value.trim();
-            const noteEl = document.getElementById('secretNote');
-            const resultsEl = document.getElementById('secretResults');
-            resultsEl.innerHTML = "";
-            noteEl.textContent = "";
-            if (rawQuery === "") {
-                noteEl.style.color = "#f85149";
-                noteEl.textContent = "[!] 検索キーワードを入力してください。";
-                resultsEl.style.display = "none";
-                return;
-            }
+            if (rawQuery === "") { alert("[!] 検索キーワードを入力してください。"); return; }
             const cleanQuery = rawQuery.toLowerCase().replace(/[\s\u3000\-－―ー_＿]/g, '');
             const matched = secretDatabase.filter(item =>
                 item.keywords.some(kw => {
@@ -196,20 +128,31 @@
                     return cleanQuery.includes(cleanKw) || cleanKw.includes(cleanQuery);
                 })
             );
+            document.getElementById('mainContent').style.display = 'none';
+            document.getElementById('searchView').style.display = 'block';
+            const titleEl = document.getElementById('searchViewTitle');
+            const noteEl = document.getElementById('searchViewNote');
+            const resultsEl = document.getElementById('searchViewResults');
+            resultsEl.innerHTML = "";
             if (matched.length > 0) {
+                titleEl.textContent = `検索結果: "${rawQuery}"`;
                 noteEl.style.color = "#3fb950";
                 noteEl.textContent = `[SUCCESS] ${matched.length}件の機密アーカイブがヒットしました：`;
-                resultsEl.style.display = "block";
                 matched.forEach(item => {
                     const li = document.createElement('li');
                     li.innerHTML = `<a href="${item.url}">${item.title}</a><span>${item.desc}</span>`;
                     resultsEl.appendChild(li);
                 });
             } else {
+                titleEl.textContent = `検索結果: "${rawQuery}"`;
                 noteEl.style.color = "#f85149";
                 noteEl.textContent = `[NOT FOUND] 「${rawQuery}」に該当する機密資料は見つかりませんでした。`;
-                resultsEl.style.display = "none";
             }
+        }
+        function closeSearchView() {
+            document.getElementById('searchView').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+            document.getElementById('secretSearchInput').value = "";
         }
         document.getElementById('secretSearchInput').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') { executeSecretSearch(); }

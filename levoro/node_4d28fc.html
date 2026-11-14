@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEXUS SYSTEMS // SECRET ARCHIVE [JHON NISHI]</title>
-    <!-- 外部CSSの読み込み -->
     <link rel="stylesheet" href="secret-style.css">
 </head>
 <body>
@@ -29,64 +28,63 @@
             [RESTRICTED AREA] このポータルはアカウント所有者（JHON NISHI）専用です。外部からのアクセスは記録・追跡されます。
         </div>
 
-        <section class="message-panel">
-            <div class="message-header">
-                <span>FILE_ID: README_FIRST.log</span>
-                <span>LAST_MODIFIED: 2026.11.14</span>
-            </div>
-            <div class="message-body">
-                <h1>……ここへ辿り着いたということは、もう気づいているはずだ。</h1>
-                <p>
-                    表のポートフォリオに載せていた仕事は、すべてただの隠れ蓑に過ぎない。<br>
-                    実は私が請け負っていた「副業」の正体は、決して表には出せないような裏のシステム開発だった。
-                </p>
-                <p>
-                    資金の流れ、抹消されたアカウントの履歴、そして奴らが裏で動かしているプロトコルの全貌——。<br>
-                    もし私に何かあった時のために、関係する資料と証拠データはすべてこのサーバーの深部に分散して保管してある。
-                </p>
-                <p>
-                    真実を知りたいなら、上の検索窓に<strong>「関連するキーワード」</strong>や<strong>「案件コード」</strong>を打ち込んで調べてくれ。すべての答えはアーカイブの中に残した。
-                </p>
-
-                <div class="highlight-box">
-                    <strong>[SYSTEM GUIDE]</strong><br>
-                    ヘッダーの検索バーはすべての階層と連動しています。調査の過程で見つけた単語やプロトコル名（例：<code>X-PROTOCOL-992</code> など）を入力することで、該当する機密ファイルへ直接アクセスできます。
+        <!-- 通常時のメインコンテンツ -->
+        <div id="mainContent">
+            <section class="message-panel">
+                <div class="message-header">
+                    <span>FILE_ID: README_FIRST.log</span>
+                    <span>LAST_MODIFIED: 2026.11.14</span>
                 </div>
-            </div>
-        </section>
+                <div class="message-body">
+                    <h1>……ここへ辿り着いたということは、もう気づいているはずだ。</h1>
+                    <p>
+                        表のポートフォリオに載せていた仕事は、すべてただの隠れ蓑に過ぎない。<br>
+                        実は私が請け負っていた「副業」の正体は、決して表には出せないような裏のシステム開発だった。
+                    </p>
+                    <p>
+                        資金の流れ、抹消されたアカウントの履歴、そして奴らが裏で動かしているプロトコルの全貌——。<br>
+                        もし私に何かあった時のために、関係する資料と証拠データはすべてこのサーバーの深部に分散して保管してある。
+                    </p>
+                    <p>
+                        真実を知りたいなら、上の検索窓に<strong>「関連するキーワード」</strong>や<strong>「案件コード」</strong>を打ち込んで調べてくれ。すべての答えはアーカイブの中に残した。
+                    </p>
 
-        <section class="search-feedback">
-            <div id="secretNote"></div>
-            <ul id="secretResults"></ul>
-        </section>
+                    <div class="highlight-box">
+                        <strong>[SYSTEM GUIDE]</strong><br>
+                        ヘッダーの検索バーはすべての階層と連動しています。調査の過程で見つけた単語やプロトコル名（例：<code>X-PROTOCOL-992</code> など）を入力することで、該当する機密ファイルへ直接アクセスできます。
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 検索実行時にのみ表示される検索結果ビュー -->
+        <div id="searchView" class="search-view-container">
+            <section class="message-panel">
+                <div class="search-view-header">
+                    <span class="search-view-title" id="searchViewTitle">検索結果</span>
+                    <button class="back-to-home-btn" onclick="closeSearchView()">&larr; 戻る</button>
+                </div>
+                <div id="searchViewNote" style="margin-bottom: 20px; font-size: 0.9rem;"></div>
+                <ul id="searchViewResults" class="search-results-list"></ul>
+            </section>
+        </div>
     </main>
 
     <footer>
         NEXUS SYSTEMS INTERNAL REPOSITORY // SESSION ENCRYPTED
     </footer>
 
-    <!-- 外部データベースと検索スクリプトの読み込み -->
     <script src="secret-search-db.js"></script>
-
     <script>
         function executeSecretSearch() {
             const inputEl = document.getElementById('secretSearchInput');
+            if (!inputEl) return;
             const rawQuery = inputEl.value.trim();
-            const noteEl = document.getElementById('secretNote');
-            const resultsEl = document.getElementById('secretResults');
-
-            resultsEl.innerHTML = "";
-            noteEl.textContent = "";
-
             if (rawQuery === "") {
-                noteEl.style.color = "#f85149";
-                noteEl.textContent = "[!] 検索キーワードを入力してください。";
-                resultsEl.style.display = "none";
+                alert("[!] 検索キーワードを入力してください。");
                 return;
             }
-
             const cleanQuery = rawQuery.toLowerCase().replace(/[\s\u3000\-－―ー_＿]/g, '');
-
             const matched = secretDatabase.filter(item =>
                 item.keywords.some(kw => {
                     const cleanKw = kw.toLowerCase().replace(/[\s\u3000\-－―ー_＿]/g, '');
@@ -94,32 +92,39 @@
                 })
             );
 
+            document.getElementById('mainContent').style.display = 'none';
+            document.getElementById('searchView').style.display = 'block';
+
+            const titleEl = document.getElementById('searchViewTitle');
+            const noteEl = document.getElementById('searchViewNote');
+            const resultsEl = document.getElementById('searchViewResults');
+            resultsEl.innerHTML = "";
+
             if (matched.length > 0) {
+                titleEl.textContent = `検索結果: "${rawQuery}"`;
                 noteEl.style.color = "#3fb950";
                 noteEl.textContent = `[SUCCESS] ${matched.length}件の機密アーカイブがヒットしました：`;
-                resultsEl.style.display = "block";
-
                 matched.forEach(item => {
                     const li = document.createElement('li');
-                    li.innerHTML = `
-                        <a href="${item.url}">${item.title}</a>
-                        <span>${item.desc}</span>
-                    `;
+                    li.innerHTML = `<a href="${item.url}">${item.title}</a><span>${item.desc}</span>`;
                     resultsEl.appendChild(li);
                 });
             } else {
+                titleEl.textContent = `検索結果: "${rawQuery}"`;
                 noteEl.style.color = "#f85149";
                 noteEl.textContent = `[NOT FOUND] 「${rawQuery}」に該当する機密資料は見つかりませんでした。`;
-                resultsEl.style.display = "none";
             }
         }
 
+        function closeSearchView() {
+            document.getElementById('searchView').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+            document.getElementById('secretSearchInput').value = "";
+        }
+
         document.getElementById('secretSearchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                executeSecretSearch();
-            }
+            if (e.key === 'Enter') { executeSecretSearch(); }
         });
     </script>
-
 </body>
 </html>

@@ -3,79 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FILE_01: X-PROTOCOL-992 // NEXUS ARCHIVE</title>
-    <!-- 共通の極秘アーカイブ用CSSを読み込み -->
+    <title>NODE_9A3F12 // NEXUS ARCHIVE [RESTRICTED]</title>
     <link rel="stylesheet" href="secret-style.css">
     <style>
-        /* このページ固有の追加スタイル（機密文書風の演出） */
-        .doc-meta {
-            display: flex;
-            justify-content: space-between;
-            background: rgba(248, 81, 73, 0.05);
-            border: 1px solid rgba(248, 81, 73, 0.2);
-            padding: 10px 15px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            color: var(--accent-red);
-            margin-bottom: 25px;
-        }
-
-        .doc-section {
-            margin-bottom: 35px;
-        }
-
-        .doc-section h2 {
-            font-size: 1.1rem;
-            color: var(--accent-blue);
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 8px;
-            margin-bottom: 15px;
-        }
-
-        .code-block {
-            background: #040609;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            padding: 15px;
-            font-family: Consolas, monospace;
-            font-size: 0.85rem;
-            color: #7ee787;
-            overflow-x: auto;
-            margin: 15px 0;
-            line-height: 1.5;
-        }
-
-        .warning-box {
-            background: rgba(210, 153, 34, 0.1);
-            border-left: 3px solid #d29922;
-            padding: 15px;
-            font-size: 0.9rem;
-            color: #d29922;
-            margin: 20px 0;
-        }
-
-        .nav-back {
-            display: inline-block;
-            margin-top: 20px;
-            color: var(--accent-blue);
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        .nav-back:hover {
-            text-decoration: underline;
-        }
+        .doc-meta { display: flex; justify-content: space-between; background: rgba(248, 81, 73, 0.05); border: 1px solid rgba(248, 81, 73, 0.2); padding: 10px 15px; border-radius: 4px; font-size: 0.8rem; color: var(--accent-red); margin-bottom: 25px; }
+        .doc-section { margin-bottom: 35px; }
+        .doc-section h2 { font-size: 1.1rem; color: var(--accent-blue); border-bottom: 1px solid var(--border-color); padding-bottom: 8px; margin-bottom: 15px; }
+        .code-block { background: #040609; border: 1px solid var(--border-color); border-radius: 4px; padding: 15px; font-family: Consolas, monospace; font-size: 0.85rem; color: #7ee787; overflow-x: auto; margin: 15px 0; line-height: 1.5; }
+        .warning-box { background: rgba(210, 153, 34, 0.1); border-left: 3px solid #d29922; padding: 15px; font-size: 0.9rem; color: #d29922; margin: 20px 0; }
+        .nav-back { display: inline-block; margin-top: 20px; color: var(--accent-blue); text-decoration: none; font-size: 0.9rem; }
+        .nav-back:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
 
-    <!-- 共通ヘッダー（検索窓 ＋ 表面への離脱リンク） -->
     <header>
         <div class="brand">
             <a href="node_4d28fc.html" class="brand-title">NEXUS_SYS // ARCHIVE</a>
             <span class="user-badge">AUTH: JHON_NISHI</span>
         </div>
-
         <div class="header-controls">
             <div class="header-search">
                 <input type="text" id="secretSearchInput" placeholder="極秘資料・案件コードで検索..." autocomplete="off">
@@ -87,121 +33,104 @@
 
     <main>
         <div class="doc-meta">
+            <span>NODE_ID: node_9a3f12.html</span>
             <span>CLASSIFICATION: TOP SECRET [LEVEL 4]</span>
-            <span>TARGET_SYSTEM: X-PROTOCOL-992</span>
         </div>
 
-        <section class="message-panel">
-            <div class="message-header">
-                <span>FILE_ID: secret_protocol_992.html</span>
-                <span>AUTHOR: J. NISHI (FRONTEND_LEAD)</span>
-            </div>
-
-            <div class="message-body">
-                <h1>X-PROTOCOL-992：統合労働管理および自動データ消去プロトコル仕様書</h1>
-                
-                <p>
-                    本ドキュメントは、大手SIer裏ルートによる「特殊物流・金融ダッシュボード（表向きの隠れ蓑）」の内部で密かに稼働している、不法就労者監視および自動存在抹消プログラムの技術仕様を記録したものである。
-                </p>
-
-                <div class="doc-section">
-                    <h2>1. システムの目的と実態</h2>
-                    <p>
-                        表向きのフロントエンドUI（Fintech・物流管理アプリ）は、監査機関や一般ユーザーを欺くための擬似的なトランザクションを表示する。しかし、内部APIは裏で「特定グループの労働者に対する稼働時間強制集約」「パスポート・身元情報の自動凍結管理」「および報酬の仲介ピンハネ」を無人処理している。
-                    </p>
+        <!-- 通常時のメインコンテンツ -->
+        <div id="mainContent">
+            <section class="message-panel">
+                <div class="message-header">
+                    <span>FILE_ID: X-PROTOCOL-992_SPEC.log</span>
+                    <span>AUTHOR: J. NISHI (FRONTEND_LEAD)</span>
                 </div>
-
-                <div class="doc-section">
-                    <h2>2. 自動データ消去トリガー（Data Erasure Routine）</h2>
-                    <p>
-                        労働者が過酷な環境により離脱、または外部への告発や連絡を試みた場合、システムは自動的に当該人物のレコードを「未登録エラー」に書き換え、データベース上から物理的・論理的に存在を消去するよう組まれている。
-                    </p>
-                    <div class="code-block">
-                        // X-PROTOCOL-992 内部処理スクリプトの断片<br>
-                        function checkWorkerCompliance(workerId) {<br>
-                        &nbsp;&nbsp;if (detectExternalContact(workerId) || detectSystemBypass(workerId)) {<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;executeNodeErasure(workerId, { wipeLogs: true, forcePurge: true });<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;logSystemEvent("CRITICAL: Entity purged to maintain operational silence.");<br>
-                        &nbsp;&nbsp;}<br>
-                        }
+                <div class="message-body">
+                    <h1>X-PROTOCOL-992：統合労働管理および自動データ消去プロトコル仕様書</h1>
+                    <p>本ドキュメントは、大手SIer裏ルートによる「特殊物流・金融ダッシュボード」の内部で密かに稼働している、不法就労者監視および自動存在抹消プログラムの技術仕様を記録したものである。</p>
+                    <div class="doc-section">
+                        <h2>1. システムの目的と実態</h2>
+                        <p>表向きのフロントエンドUIは監査機関を欺くための偽装表示であり、内部APIは特定グループの労働者に対する稼働時間強制集約や身元情報の自動凍結管理を無人処理している。</p>
                     </div>
+                    <div class="doc-section">
+                        <h2>2. 自動データ消去トリガー</h2>
+                        <div class="code-block">
+// X-PROTOCOL-992 内部処理スクリプトの断片<br>
+function checkWorkerCompliance(workerId) {<br>
+&nbsp;&nbsp;if (detectExternalContact(workerId) || detectSystemBypass(workerId)) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;executeNodeErasure(workerId, { wipeLogs: true, forcePurge: true });<br>
+&nbsp;&nbsp;}<br>
+}
+                        </div>
+                    </div>
+                    <div class="warning-box">
+                        <strong>[DEVELOPER'S NOTE - J.NISHI]</strong><br>
+                        私たちが構築した美しいボタンやグラフの裏で、何人もの人間の人生と存在が消去されている。これ以上見過ごすことはできない。
+                    </div>
+                    <a href="node_4d28fc.html" class="nav-back">&larr; アーカイブホームに戻る</a>
                 </div>
+            </section>
+        </div>
 
-                <div class="warning-box">
-                    <strong>[DEVELOPER'S NOTE - J.NISHI]</strong><br>
-                    私はただのUIデザイナーとしてこのダッシュボードの構築を頼まれたはずだった。だが、このコードを書いている最中に気づいてしまった。私たちが構築した美しいボタンやグラフの裏で、何人もの人間の「人生と存在」がボタン一つでゴミのように消去されている。これ以上見過ごすことはできない。
+        <!-- 検索結果ビュー -->
+        <div id="searchView" class="search-view-container">
+            <section class="message-panel">
+                <div class="search-view-header">
+                    <span class="search-view-title" id="searchViewTitle">検索結果</span>
+                    <button class="back-to-home-btn" onclick="closeSearchView()">&larr; 戻る</button>
                 </div>
-
-                <a href="node_4d28fc.html" class="nav-back">&larr; アーカイブホーム（管理画面）に戻る</a>
-            </div>
-        </section>
-
-        <!-- 検索結果表示エリア -->
-        <section class="search-feedback">
-            <div id="secretNote"></div>
-            <ul id="secretResults"></ul>
-        </section>
+                <div id="searchViewNote" style="margin-bottom: 20px; font-size: 0.9rem;"></div>
+                <ul id="searchViewResults" class="search-results-list"></ul>
+            </section>
+        </div>
     </main>
 
     <footer>
         NEXUS SYSTEMS INTERNAL REPOSITORY // SESSION ENCRYPTED
     </footer>
 
-    <!-- 共通データベースと検索スクリプトの読み込み -->
     <script src="secret-search-db.js"></script>
-
     <script>
         function executeSecretSearch() {
             const inputEl = document.getElementById('secretSearchInput');
+            if (!inputEl) return;
             const rawQuery = inputEl.value.trim();
-            const noteEl = document.getElementById('secretNote');
-            const resultsEl = document.getElementById('secretResults');
-
-            resultsEl.innerHTML = "";
-            noteEl.textContent = "";
-
-            if (rawQuery === "") {
-                noteEl.style.color = "#f85149";
-                noteEl.textContent = "[!] 検索キーワードを入力してください。";
-                resultsEl.style.display = "none";
-                return;
-            }
-
+            if (rawQuery === "") { alert("[!] 検索キーワードを入力してください。"); return; }
             const cleanQuery = rawQuery.toLowerCase().replace(/[\s\u3000\-－―ー_＿]/g, '');
-
             const matched = secretDatabase.filter(item =>
                 item.keywords.some(kw => {
                     const cleanKw = kw.toLowerCase().replace(/[\s\u3000\-－―ー_＿]/g, '');
                     return cleanQuery.includes(cleanKw) || cleanKw.includes(cleanQuery);
                 })
             );
-
+            document.getElementById('mainContent').style.display = 'none';
+            document.getElementById('searchView').style.display = 'block';
+            const titleEl = document.getElementById('searchViewTitle');
+            const noteEl = document.getElementById('searchViewNote');
+            const resultsEl = document.getElementById('searchViewResults');
+            resultsEl.innerHTML = "";
             if (matched.length > 0) {
+                titleEl.textContent = `検索結果: "${rawQuery}"`;
                 noteEl.style.color = "#3fb950";
                 noteEl.textContent = `[SUCCESS] ${matched.length}件の機密アーカイブがヒットしました：`;
-                resultsEl.style.display = "block";
-
                 matched.forEach(item => {
                     const li = document.createElement('li');
-                    li.innerHTML = `
-                        <a href="${item.url}">${item.title}</a>
-                        <span>${item.desc}</span>
-                    `;
+                    li.innerHTML = `<a href="${item.url}">${item.title}</a><span>${item.desc}</span>`;
                     resultsEl.appendChild(li);
                 });
             } else {
+                titleEl.textContent = `検索結果: "${rawQuery}"`;
                 noteEl.style.color = "#f85149";
                 noteEl.textContent = `[NOT FOUND] 「${rawQuery}」に該当する機密資料は見つかりませんでした。`;
-                resultsEl.style.display = "none";
             }
         }
-
+        function closeSearchView() {
+            document.getElementById('searchView').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+            document.getElementById('secretSearchInput').value = "";
+        }
         document.getElementById('secretSearchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                executeSecretSearch();
-            }
+            if (e.key === 'Enter') { executeSecretSearch(); }
         });
     </script>
-
 </body>
 </html>
