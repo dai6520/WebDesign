@@ -18,7 +18,7 @@ const blogPosts = [
     {
         date: "2026-11-03",
         title: "検索窓にちょっとした遊び心を実装",
-        content: "トップページの検索窓、ただキーワードでジャンプするだけだと味気ないから、特定のワードを入れたら別の場所に飛ぶ仕組みをこっそり仕込んでみた。こういう無駄に作り込む時間が一番楽しい。"
+        content: "トップページの検索窓、ただキーワードでジャンプするだけだと味気ないから、特定のワードを入れたら別の場所に飛ぶ仕組みをこっそり仕込んでみた。こういう無駄に作り込む時間が一番楽しい。副業のログインページも検索窓から飛べるようにしようかな。"
     },
     {
         date: "2026-11-04",
@@ -40,15 +40,15 @@ const blogPosts = [
         title: "個人ブログのレイアウトと、ちょっとしたメモ",
         content: `最近進めてる個人ブログの構築も大体形になってきた。シンプルで読みやすいタイポグラフィを意識しつつ、コードの組み立てもスムーズにいって満足。<br><br>
         【一時メモ・検証用】<br>
-        管理端末へのアクセスキー: 
-        <span id="secretKey" class="redacted" onclick="revealAndTrigger(this)">
-            [ クリックして暗号を復号: X-PROTOCOL-992 ]
+        副業認証画面への検索単語: 
+        <span id="secretKey" class="redacted" onclick="openWarningModal(this)">
+            lavoro illegale  ログイン画面ではWebページ開発者の気持ちになってほしい
         </span>
 
         <div id="hiddenGizmo" class="secret-trigger-area">
-            <span style="color: #28a745; font-family: monospace; font-size: 0.85rem; font-weight: bold;">[!] SECURITY OVERRIDE SUCCESSFUL</span>
+            <span style="color: #28a745; font-family: monospace; font-size: 0.85rem; font-weight: bold;">[!] ACCESS GRANTED // LOGGED</span>
             <p style="margin: 8px 0 0 0; font-size: 0.9rem; color: #555;">
-                コンソールログへのシステム出力が完了しました。開発者ツールのコンソールをご確認ください。<br>
+                コンソールログへのシステム出力が完了しました。<br>
                 次のアクセスノード: <a href="system/maintenance.html" style="color: #0366d6; text-decoration: underline;">/system/maintenance.html</a>
             </p>
         </div>`
