@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORE TERMINAL // JHON NISHI [RESTRICTED]</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        body {
+            background-color: #06080e;
+            color: #58a6ff;
+            font-family: Consolas, "Courier New", Courier, monospace;
+            margin: 0;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        .core-container {
+            width: 100%;
+            max-width: 850px;
+            background: #0d1117;
+            border: 1px solid #1f6feb;
+            border-radius: 8px;
+            box-shadow: 0 15px 40px rgba(31, 111, 235, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 520px;
+        }
+        .core-header {
+            background: #161b22;
+            padding: 12px 20px;
+            border-bottom: 1px solid #30363d;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #8b949e;
+        }
+        .core-title {
+            color: #58a6ff;
+            font-weight: bold;
+        }
+        .core-body {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .output-line {
+            margin-bottom: 8px;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        .text-success { color: #3fb950; }
+        .text-warn { color: #d29922; }
+        .text-danger { color: #f85149; }
+        .text-info { color: #58a6ff; }
+        .text-muted { color: #8b949e; }
+
+        /* コマンド入力エリア */
+        .core-input-area {
+            background: #161b22;
+            padding: 15px 20px;
+            border-top: 1px solid #30363d;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .prompt-symbol {
+            color: #3fb950;
+            font-weight: bold;
+        }
+        .core-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #f0f6fc;
+            font-family: inherit;
+            font-size: 0.95rem;
+            outline: none;
+        }
+        .back-link {
+            color: #8b949e;
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: color 0.2s;
+        }
+        .back-link:hover {
+            color: #f0f6fc;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="core-container">
+        <div class="core-header">
+            <span class="core-title">[SECURE_NODE: CORE_TERMINAL_09]</span>
+            <a href="maintenance.html" class="back-link">&larr; メンテナンス画面に戻る</a>
+        </div>
+
+        <div class="core-body" id="consoleOutput">
+            <div class="output-line text-info">=== JHON NISHI PRIVATE CORE ARCHIVE (v4.2.1) ===</div>
+            <div class="output-line text-muted">認証トークン [X-PROTOCOL-992] によるセッション確立完了。</div>
+            <div class="output-line text-muted">利用可能なコマンドを確認するには 'help' と入力してください。</div>
+            <div class="output-line">&nbsp;</div>
+        </div>
+
+        <div class="core-input-area">
+            <span class="prompt-symbol">root@core:~#</span>
+            <input type="text" id="commandInput" class="core-input" autofocus autocomplete="off" placeholder="コマンドを入力 (例: help, status, decrypt)...">
+        </div>
+    </div>
+
+    <script>
+        const outputEl = document.getElementById('consoleOutput');
+        const inputEl = document.getElementById('commandInput');
+
+        // 画面にテキスト行を出力するヘルパー関数
+        function printLine(text, className = "") {
+            const div = document.createElement('div');
+            div.className = `output-line ${className}`;
+            div.textContent = text;
+            outputEl.appendChild(div);
+            outputEl.scrollTop = outputEl.scrollHeight;
+        }
+
+        // コマンド解析処理
+        function processCommand(cmd) {
+            const cleanCmd = cmd.trim().toLowerCase();
+            printLine(`root@core:~# ${cmd}`, "text-muted");
+
+            if (cleanCmd === "") return;
+
+            switch (cleanCmd) {
+                case "help":
+                    printLine("利用可能なコマンド一覧:", "text-info");
+                    printLine("  status   - 現在のシステム状態と接続ノードを確認します。");
+                    printLine("  ls       - 格納されている暗号化ログファイルを一覧表示します。");
+                    printLine("  decrypt  - 極秘アーカイブデータの復号を試行します。");
+                    printLine("  clear    - 画面のログをクリアします。");
+                    printLine("  exit     - メンテナンス画面へ退避します。");
+                    break;
+
+                case "status":
+                    printLine("[SYSTEM STATUS]", "text-success");
+                    printLine("  - Host: JHON-NISHI-INFRA-NODE-01");
+                    printLine("  - Security Level: RESTRICTED (Level 4)");
+                    printLine("  - Active Backdoor: STABLE");
+                    break;
+
+                case "ls":
+                    printLine("index.dat", "text-muted");
+                    printLine("project_alpha_log.enc", "text-muted");
+                    printLine("secret_memo_2026.txt [LOCKED]", "text-warn");
+                    break;
+
+                case "decrypt":
+                    printLine("Decrypting secret_memo_2026.txt...", "text-info");
+                    setTimeout(() => {
+                        printLine("SUCCESS: 機密データを復号しました。", "text-success");
+                        printLine("「彼らが探しているのは成果物ではなく、過去に破棄されたプロトコルそのものだ。」", "text-info");
+                    }, 800);
+                    break;
+
+                case "clear":
+                    outputEl.innerHTML = "";
+                    break;
+
+                case "exit":
+                    printLine("セッションを切断します...", "text-warn");
+                    setTimeout(() => {
+                        window.location.href = "maintenance.html";
+                    }, 600);
+                    break;
+
+                default:
+                    printLine(`コマンドが見つかりません: "${cmd}"。'help' で有効なコマンドを確認してください。`, "text-danger");
+                    break;
+            }
+            printLine("&nbsp;");
+        }
+
+        // Enterキーでコマンド実行
+        inputEl.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const cmd = inputEl.value;
+                inputEl.value = "";
+                processCommand(cmd);
+            }
+        });
+    </script>
+
+</body>
+</html>
