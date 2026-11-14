@@ -55,7 +55,7 @@ const blogPosts = [
             <span style="color: #28a745; font-family: monospace; font-size: 0.85rem; font-weight: bold;">[!] ACCESS GRANTED // LOGGED</span>
             <p style="margin: 8px 0 0 0; font-size: 0.9rem; color: #555;">
                 コンソールログへのシステム出力が完了しました。<br>
-                次のアクセスノード: <a href="system/maintenance.html" style="color: #0366d6; text-decoration: underline;">/system/maintenance.html</a>
+                次のアクセスノード: <a href="../system/maintenance.html" style="color: #0366d6; text-decoration: underline;">/system/maintenance.html</a>
             </p>
         </div>`
     }
