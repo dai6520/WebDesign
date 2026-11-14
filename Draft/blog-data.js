@@ -40,10 +40,16 @@ const blogPosts = [
         title: "個人ブログのレイアウトと、ちょっとしたメモ",
         content: `最近進めてる個人ブログの構築も大体形になってきた。シンプルで読みやすいタイポグラフィを意識しつつ、コードの組み立てもスムーズにいって満足。<br><br>
         【一時メモ・検証用】<br>
-        副業認証画面への検索単語: 
+        管理端末へのアクセスキー: 
         <span id="secretKey" class="redacted" onclick="openWarningModal(this)">
-            lavoro illegale  ログイン画面ではWebページ開発者の気持ちになってほしい
+            X-PROTOCOL-992
         </span>
+
+        <!-- 「いいえ」を選んだときに出現する救済措置エリア -->
+        <div id="lockedRescue" class="locked-rescue-area">
+            [!] セッションがロックされました。監視を避けるため一時的にアクセスが遮断されています。
+            <button class="rescue-btn" onclick="resetSecretState()">[ セッションを強制リセットして再試行 ]</button>
+        </div>
 
         <div id="hiddenGizmo" class="secret-trigger-area">
             <span style="color: #28a745; font-family: monospace; font-size: 0.85rem; font-weight: bold;">[!] ACCESS GRANTED // LOGGED</span>

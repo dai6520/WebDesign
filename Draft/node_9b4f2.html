@@ -260,15 +260,28 @@
             document.getElementById('prevBtn').disabled = (currentIndex === 0);
             document.getElementById('nextBtn').disabled = (currentIndex === blogPosts.length - 1);
 
+            // 状態に応じたUIの復元
+            applyCurrentState();
+        }
+
+        function applyCurrentState() {
             const secretEl = document.getElementById('secretKey');
             const gizmoEl = document.getElementById('hiddenGizmo');
-            if (secretEl) {
-                if (secretState === "revealed") {
-                    secretEl.classList.add('revealed');
-                    if (gizmoEl) gizmoEl.classList.add('show');
-                } else if (secretState === "locked") {
-                    secretEl.classList.add('locked');
-                }
+            const rescueEl = document.getElementById('lockedRescue');
+
+            if (!secretEl) return;
+
+            // クラスを一度すべてクリア
+            secretEl.classList.remove('revealed', 'locked');
+            if (gizmoEl) gizmoEl.classList.remove('show');
+            if (rescueEl) rescueEl.classList.remove('show');
+
+            if (secretState === "revealed") {
+                secretEl.classList.add('revealed');
+                if (gizmoEl) gizmoEl.classList.add('show');
+            } else if (secretState === "locked") {
+                secretEl.classList.add('locked');
+                if (rescueEl) rescueEl.classList.add('show');
             }
         }
 
@@ -284,31 +297,30 @@
 
             targetSecretEl = element;
             document.getElementById('warningModal').classList.add('active');
-            console.warn("[SECURITY WARNING] 許可IP外からのアクセスを検知しました。");
+            
+            // 画面全体の赤色フラッシュを開始
+            document.body.classList.add('alert-active');
         }
 
         function handleWarningChoice(isContinue) {
             document.getElementById('warningModal').classList.remove('active');
+            
+            // 選択肢を選んだらフラッシュを停止
+            document.body.classList.remove('alert-active');
 
             if (isContinue) {
                 secretState = "revealed";
-                if (targetSecretEl) {
-                    targetSecretEl.classList.add('revealed');
-                }
-                console.log("%c[SYSTEM DECRYPTED] Secret key accessed: X-PROTOCOL-992", "color: #b78103; font-weight: bold; font-size: 13px;");
-                console.log("-> 警告を無視してアクセスを続行しました。");
-
-                const gizmo = document.getElementById('hiddenGizmo');
-                if (gizmo) {
-                    gizmo.classList.add('show');
-                }
             } else {
                 secretState = "locked";
-                if (targetSecretEl) {
-                    targetSecretEl.classList.add('locked');
-                }
-                console.log("%c[ACCESS ABORTED] セッションはロックされました。", "color: #8b949e; font-size: 12px;");
+                // ※コンソールへの案内文は削除し、画面上のUIだけで完結させます
             }
+            applyCurrentState();
+        }
+
+        // 【救済措置】画面上のリンクからロック状態を初期化してやり直す関数
+        function resetSecretState() {
+            secretState = "unopened";
+            applyCurrentState();
         }
 
         window.addEventListener('DOMContentLoaded', () => {
