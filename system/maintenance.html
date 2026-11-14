@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Maintenance // JHON NISHI</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        body {
+            background-color: #0b0f19;
+            color: #3fb950; /* ターミナル風のグリーンを基調 */
+            font-family: Consolas, "Courier New", Courier, monospace;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        .terminal-container {
+            width: 100%;
+            max-width: 800px;
+            background: #111625;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            overflow: hidden;
+        }
+        /* ターミナルのヘッダー部分 */
+        .terminal-header {
+            background: #161b22;
+            padding: 12px 20px;
+            border-bottom: 1px solid #30363d;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #8b949e;
+        }
+        .terminal-dots {
+            display: flex;
+            gap: 6px;
+        }
+        .dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+        }
+        .dot-red { background: #f85149; }
+        .dot-yellow { background: #d29922; }
+        .dot-green { background: #238636; }
+
+        /* ログが出力されるメインディスプレイ */
+        .terminal-body {
+            padding: 25px;
+            height: 380px;
+            overflow-y: auto;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        .log-line {
+            margin-bottom: 8px;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        .log-timestamp {
+            color: #8b949e;
+            margin-right: 10px;
+        }
+        .log-success { color: #3fb950; }
+        .log-warn { color: #d29922; }
+        .log-danger { color: #f85149; }
+        .log-info { color: #58a6ff; }
+
+        /* フッター・操作パネル */
+        .terminal-footer {
+            background: #161b22;
+            padding: 15px 25px;
+            border-top: 1px solid #30363d;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .back-link {
+            color: #58a6ff;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: opacity 0.2s;
+        }
+        .back-link:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            color: #3fb950;
+        }
+        .pulse-dot {
+            width: 8px; height: 8px;
+            background: #3fb950;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.4); opacity: 0.4; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="terminal-container">
+        <!-- ターミナルウィンドウヘッダー -->
+        <div class="terminal-header">
+            <div class="terminal-dots">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+            </div>
+            <span>root@jhon-nishi-server:/var/sys/maintenance</span>
+            <span>SECURE_MODE: ON</span>
+        </div>
+
+        <!-- ログ出力エリア -->
+        <div class="terminal-body" id="terminalLogs">
+            <!-- JavaScriptでログが動的に流し込まれます -->
+        </div>
+
+        <!-- フッターエリア -->
+        <div class="terminal-footer">
+            <a href="../internal-memo.html" class="back-link">&larr; 内部メモへ戻る</a>
+            <div class="status-indicator">
+                <span class="pulse-dot"></span>
+                <span>SYSTEM RUNNING / LOGGING ACTIVE</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 順番に自動出力されるシステムログのリスト
+        const logSequence = [
+            { text: "Initializing system diagnostics...", type: "info", delay: 300 },
+            { text: "Bypassing public proxy layers... [OK]", type: "success", delay: 600 },
+            { text: "Access granted from authenticated session [X-PROTOCOL-992]", type: "success", delay: 900 },
+            { text: "Mounting private storage volumes... /var/www/secrets", type: "info", delay: 1400 },
+            { text: "Checking file integrity: style.css [VERIFIED]", type: "success", delay: 1800 },
+            { text: "Checking file integrity: search-db.js [VERIFIED]", type: "success", delay: 2100 },
+            { text: "WARNING: Unidentified background daemon detected on port 443.", type: "warn", delay: 2700 },
+            { text: "Loading user portfolio metadata & portfolio logs...", type: "info", delay: 3200 },
+            { text: "Establishing encrypted tunnel with node [JH-NISHI-01]...", type: "info", delay: 3800 },
+            { text: "System maintenance protocol is currently active. All records are being synchronized.", type: "success", delay: 4400 },
+            { text: "Awaiting administrator further commands...", type: "info", delay: 5000 }
+        ];
+
+        const terminalBody = document.getElementById('terminalLogs');
+
+        // 現在の時刻（HH:MM:SS形式）を取得する関数
+        function getTimestamp() {
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            const s = String(now.getSeconds()).padStart(2, '0');
+            return `${h}:${m}:${s}`;
+        }
+
+        // ログを1行ずつ遅延させて出力する非同期処理
+        async function runTerminalLogs() {
+            for (let i = 0; i < logSequence.length; i++) {
+                const item = logSequence[i];
+                await new Promise(resolve => setTimeout(resolve, item.delay - (i > 0 ? logSequence[i-1].delay : 0)));
+
+                const lineDiv = document.createElement('div');
+                lineDiv.className = `log-line log-${item.type}`;
+                lineDiv.innerHTML = `<span class="log-timestamp">[${getTimestamp()}]</span>${item.text}`;
+                
+                terminalBody.appendChild(lineDiv);
+                
+                // 常に一番下の行までスクロール
+                terminalBody.scrollTop = terminalBody.scrollHeight;
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            runTerminalLogs();
+        });
+    </script>
+
+</body>
+</html>
