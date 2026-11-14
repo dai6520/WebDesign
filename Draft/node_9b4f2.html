@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Internal Memo JHON NISHI</title>
+    <title>Internal Memo | JHON NISHI</title>
     <link rel="stylesheet" href="../style.css">
     <style>
         .blog-container {
@@ -60,29 +60,32 @@
             font-size: 1.4rem;
             color: #111;
         }
-        .blog-post p {
-            color: #555;
-            font-size: 0.95rem;
-            line-height: 1.8;
-            margin-top: 20px;
-        }
 
         /* 黒塗り（未解除）スタイル */
         .redacted {
             background-color: #111;
             color: #111;
-            padding: 2px 6px;
+            padding: 2px 8px;
             border-radius: 3px;
             cursor: pointer;
             user-select: none;
             transition: background 0.3s, color 0.3s;
         }
         
-        /* 復号（解除）されたスタイル */
+        /* 「はい」を選んだとき：復号（解除）スタイル */
         .redacted.revealed {
             background-color: rgba(210, 153, 34, 0.15);
             color: #b78103;
             border: 1px dashed rgba(210, 153, 34, 0.4);
+            cursor: default;
+        }
+
+        /* 「いいえ」を選んだとき：黒塗りのまま完全ロック */
+        .redacted.locked {
+            background-color: #111;
+            color: #111;
+            cursor: not-allowed;
+            opacity: 0.85;
         }
 
         /* 復号後に連動して出現する隠しエリア */
@@ -102,17 +105,98 @@
             from { opacity: 0; transform: translateY(-5px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* 警告モーダル（ポップアップ）のスタイル */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(3px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: 20px;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        .warning-box {
+            background: #161b22;
+            border: 1px solid #f85149;
+            border-radius: 8px;
+            max-width: 440px;
+            width: 100%;
+            padding: 30px;
+            color: #c9d1d9;
+            box-shadow: 0 10px 30px rgba(248, 81, 73, 0.25);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        .warning-header {
+            color: #f85149;
+            font-family: monospace;
+            font-weight: bold;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .warning-message {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            color: #f0f6fc;
+        }
+        .warning-message span.admin-note {
+            display: block;
+            margin-top: 12px;
+            padding: 10px 12px;
+            background: rgba(248, 81, 73, 0.1);
+            border-left: 3px solid #f85149;
+            font-size: 0.9rem;
+            color: #ffa198;
+        }
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+        }
+        .modal-actions button {
+            flex: 1;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: opacity 0.2s;
+        }
+        .btn-yes {
+            background: #da3633;
+            color: #fff;
+        }
+        .btn-yes:hover {
+            opacity: 0.9;
+        }
+        .btn-no {
+            background: #30363d;
+            color: #c9d1d9;
+        }
+        .btn-no:hover {
+            background: #484f58;
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo"><a href="index.html">JHON NISHI.</a></div>
+        <div class="logo"><a href="../index.html">JHON NISHI.</a></div>
         <nav>
             <a href="internal-memo.html" style="color:#111; font-weight:bold;">Memo</a>
-            <a href="about.html">About</a>
-            <a href="index.html#works">Works</a>
-            <a href="contact.html">Contact</a>
+            <a href="../about.html">About</a>
+            <a href="../index.html#works">Works</a>
+            <a href="../contact.html">Contact</a>
         </nav>
     </header>
 
@@ -136,6 +220,24 @@
         </div>
     </div>
 
+    <!-- 警告・確認モーダル -->
+    <div id="warningModal" class="modal-overlay">
+        <div class="warning-box">
+            <div class="warning-header">[!] SECURITY ALERT // UNAUTHORIZED ACCESS</div>
+            <div class="warning-message">
+                許可IP外からのアクセスを検知。
+                <span class="admin-note">
+                    <strong>管理者からの警告：</strong><br>
+                    「これ以上深入りするな。監視されている可能性がある。それでも続けるか？」
+                </span>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-yes" onclick="handleWarningChoice(true)">はい</button>
+                <button class="btn-no" onclick="handleWarningChoice(false)">いいえ</button>
+            </div>
+        </div>
+    </div>
+
     <footer>
         <p>&copy; 2026 Jhon Nishi. All Rights Reserved.</p>
     </footer>
@@ -144,9 +246,9 @@
     <script src="blog-data.js"></script>
 
     <script>
-        // blog-data.js で定義された blogPosts 配列を使用
-        let currentIndex = 0; // 最も古い日付（2026-11-01）からスタート
-        let isRevealed = false;
+        let currentIndex = 0;
+        let secretState = "unopened"; // "unopened" | "revealed" | "locked"
+        let targetSecretEl = null;
 
         function renderPost() {
             const post = blogPosts[currentIndex];
@@ -157,27 +259,55 @@
 
             document.getElementById('prevBtn').disabled = (currentIndex === 0);
             document.getElementById('nextBtn').disabled = (currentIndex === blogPosts.length - 1);
+
+            const secretEl = document.getElementById('secretKey');
+            const gizmoEl = document.getElementById('hiddenGizmo');
+            if (secretEl) {
+                if (secretState === "revealed") {
+                    secretEl.classList.add('revealed');
+                    if (gizmoEl) gizmoEl.classList.add('show');
+                } else if (secretState === "locked") {
+                    secretEl.classList.add('locked');
+                }
+            }
         }
 
         function changePost(direction) {
             currentIndex += direction;
             if (currentIndex < 0) currentIndex = 0;
             if (currentIndex >= blogPosts.length) currentIndex = blogPosts.length - 1;
-            
             renderPost();
         }
 
-        function revealAndTrigger(element) {
-            if (!isRevealed) {
-                isRevealed = true;
-                element.classList.add('revealed');
+        function openWarningModal(element) {
+            if (secretState !== "unopened") return;
+
+            targetSecretEl = element;
+            document.getElementById('warningModal').classList.add('active');
+            console.warn("[SECURITY WARNING] 許可IP外からのアクセスを検知しました。");
+        }
+
+        function handleWarningChoice(isContinue) {
+            document.getElementById('warningModal').classList.remove('active');
+
+            if (isContinue) {
+                secretState = "revealed";
+                if (targetSecretEl) {
+                    targetSecretEl.classList.add('revealed');
+                }
                 console.log("%c[SYSTEM DECRYPTED] Secret key accessed: X-PROTOCOL-992", "color: #b78103; font-weight: bold; font-size: 13px;");
-                console.log("-> プレイヤーへのヒント: 次の謎解きルートの権限が解放されました。");
-                
+                console.log("-> 警告を無視してアクセスを続行しました。");
+
                 const gizmo = document.getElementById('hiddenGizmo');
                 if (gizmo) {
                     gizmo.classList.add('show');
                 }
+            } else {
+                secretState = "locked";
+                if (targetSecretEl) {
+                    targetSecretEl.classList.add('locked');
+                }
+                console.log("%c[ACCESS ABORTED] セッションはロックされました。", "color: #8b949e; font-size: 12px;");
             }
         }
 
