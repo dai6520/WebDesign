@@ -133,7 +133,8 @@
                 }, 1000);
                 return;
             }
-            lavoroillegale
+            
+            const cleanQuery = query.toLowerCase().replace(/[\s\-_]/g, '');
             if (cleanQuery === "lavoroillegale") {
                 noteEl.style.color = "#85d996";
                 noteEl.textContent = "プロトコル照合成功。システムへアクセスします...";
