@@ -186,6 +186,34 @@
         .btn-no:hover {
             background: #484f58;
         }
+        /* ロック時に出現する救済エリア（通常時は完全に非表示） */
+        .locked-rescue-area {
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(248, 81, 73, 0.05);
+            border: 1px dashed rgba(248, 81, 73, 0.3);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: #f85149;
+            display: none; /* 初期状態は非表示 */
+        }
+        .locked-rescue-area.show {
+            display: block; /* ロック時のみ表示 */
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        .rescue-btn {
+            background: none;
+            border: none;
+            color: #58a6ff;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 0.85rem;
+            padding: 0;
+            margin-left: 5px;
+        }
+        .rescue-btn:hover {
+            color: #79c0ff;
+        }
     </style>
 </head>
 <body>
