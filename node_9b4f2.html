@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Internal Memo | JHON NISHI</title>
+    <title>Internal Memo | SYU NISHI</title>
     <link rel="stylesheet" href="style.css">
     <style>
         .blog-container {
@@ -53,7 +53,7 @@
             border-radius: 8px;
             padding: 40px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-            min-height: 220px;
+            min-height: 240px;
         }
         .blog-post h2 {
             margin-top: 0;
@@ -66,12 +66,48 @@
             line-height: 1.8;
             margin-top: 20px;
         }
+
+        /* 黒塗り（未解除）スタイル */
+        .redacted {
+            background-color: #111;
+            color: #111;
+            padding: 2px 6px;
+            border-radius: 3px;
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.3s, color 0.3s;
+        }
+        
+        /* 復号（解除）されたスタイル */
+        .redacted.revealed {
+            background-color: rgba(210, 153, 34, 0.15);
+            color: #b78103;
+            border: 1px dashed rgba(210, 153, 34, 0.4);
+        }
+
+        /* 復号後に連動して出現する隠しエリア */
+        .secret-trigger-area {
+            margin-top: 25px;
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            display: none; /* 初期状態は非表示 */
+        }
+        .secret-trigger-area.show {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo"><a href="index.html">JHON NISHI.</a></div>
+        <div class="logo"><a href="index.html">SYU NISHI.</a></div>
         <nav>
             <a href="internal-memo.html" style="color:#111; font-weight:bold;">Memo</a>
             <a href="about.html">About</a>
@@ -81,7 +117,7 @@
     </header>
 
     <div class="blog-container">
-        <h1 style="margin-bottom: 10px;">【公開前】Internal Working Memo</h1>
+        <h1 style="margin-bottom: 10px;">Internal Working Memo</h1>
         <p style="color: #666; margin-bottom: 30px; font-size: 0.9rem;">個人開発の進捗および内部ログのアーカイブレコード。</p>
 
         <!-- 日付ナビゲーション -->
@@ -94,16 +130,18 @@
         <!-- 記事表示エリア -->
         <div class="blog-post" id="postArea">
             <h2 id="postTitle">読み込み中...</h2>
-            <p id="postContent">データを展開しています。</p>
+            <div id="postContent" style="color: #555; font-size: 0.95rem; line-height: 1.8; margin-top: 20px;">
+                データを展開しています。
+            </div>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Jhon Nishi. All Rights Reserved.</p>
+        <p>&copy; 2026 Syu Nishi. All Rights Reserved.</p>
     </footer>
 
     <script>
-        // ブログ記事のデータベース（古い順に並べておくのがおすすめ）
+        // ブログ記事データベース（特定の記事に黒塗り＆連動ギミックを仕込む）
         const posts = [
             {
                 date: "2026-11-02",
@@ -113,41 +151,75 @@
             {
                 date: "2026-11-08",
                 title: "認証プロトコルのセキュリティ見直し",
-                content: "検索インデックスからの意図しないアクセスを防ぐため、一部の裏ルート（maintenance系）のパスコード照合ロジックを強化。また、ブラウザバック時のキャッシュクリア処理の挙動を全ページで統一した。<br><br><span style='color: #888; font-family: monospace; font-size: 0.85rem;'>// NOTE: 臨時バックアップデータは /archives/sec_log_9182.html に退避済み。</span>"
+                content: "検索インデックスからの意図しないアクセスを防ぐため、一部の裏ルート（maintenance系）のパスコード照合ロジックを強化。また、ブラウザバック時のキャッシュクリア処理の挙動を全ページで統一した。"
             },
             {
                 date: "2026-11-14",
                 title: "個人ブログサイトをリニューアル中",
-                content: "現在、ポートフォリオとは別に、日々の技術的気付きやデザインに関する思考をまとめるための個人ブログを構築しています。コンポーネント設計の一貫性を保ちつつ、シンプルで読みやすいタイポグラフィを追求中。完成まであと少しです。<br><br><strong>【重要・検証コード】</strong><br>次のフェーズへ進むためのセキュアトークン: <code style='background: #f1f1f1; padding: 2px 6px; border-radius: 4px; color: #d73a49;'>X-PROTOCOL-992</code>"
+                content: `現在、ポートフォリオとは別に、日々の技術的気付きやデザインに関する思考をまとめるための個人ブログを構築しています。コンポーネント設計の一貫性を保ちつつ、シンプルで読みやすいタイポグラフィを追求中。<br><br>
+                【機密セッション情報】<br>
+                管理端末へのアクセスキー: 
+                <span id="secretKey" class="redacted" onclick="revealAndTrigger(this)">
+                    [ クリックして暗号を復号: X-PROTOCOL-992 ]
+                </span>
+
+                <!-- 復号されると連動して出現する隠しギミック -->
+                <div id="hiddenGizmo" class="secret-trigger-area">
+                    <span style="color: #28a745; font-family: monospace; font-size: 0.85rem; font-weight: bold;">[!] SECURITY OVERRIDE SUCCESSFUL</span>
+                    <p style="margin: 8px 0 0 0; font-size: 0.9rem; color: #555;">
+                        コンソールログへのシステム出力が完了しました。開発者ツールのコンソールをご確認ください。<br>
+                        次のアクセスノード: <a href="maintenance.html" style="color: #0366d6; text-decoration: underline;">/system/maintenance_v2.html</a>
+                    </p>
+                </div>`
             }
         ];
 
-        // 現在表示している記事のインデックス（初期値は一番新しい最後の記事）
         let currentIndex = posts.length - 1;
+        let isRevealed = false; // 二重実行防止用フラグ
 
         function renderPost() {
             const post = posts[currentIndex];
             
-            // 日付・タイトル・内容を反映
             document.getElementById('currentDateDisplay').textContent = post.date.replace(/-/g, '.');
             document.getElementById('postTitle').textContent = post.title;
-            document.getElementById('postContent').textContent = post.content;
+            
+            // innerHTMLを使ってHTMLタグやギミックを反映
+            document.getElementById('postContent').innerHTML = post.content;
 
-            // ボタンの有効・無効切り替え（端に達したらボタンをグレーアウト）
             document.getElementById('prevBtn').disabled = (currentIndex === 0);
             document.getElementById('nextBtn').disabled = (currentIndex === posts.length - 1);
+            
+            // 記事を切り替えた際、すでに復号済みであれば状態をリセットするか維持するかを調整
         }
 
         function changePost(direction) {
             currentIndex += direction;
-            // 範囲外に行かないように制限
             if (currentIndex < 0) currentIndex = 0;
             if (currentIndex >= posts.length) currentIndex = posts.length - 1;
             
             renderPost();
         }
 
-        // ページ読み込み時に最初の記事を表示
+        // 黒塗りテキストがクリックされたときの処理
+        function revealAndTrigger(element) {
+            if (!isRevealed) {
+                isRevealed = true;
+
+                // 1. 黒塗りを解除
+                element.classList.add('revealed');
+
+                // 2. ブラウザのコンソールログにメッセージを出力
+                console.log("%c[SYSTEM DECRYPTED] Secret key accessed: X-PROTOCOL-992", "color: #b78103; font-weight: bold; font-size: 13px;");
+                console.log("-> プレイヤーへのヒント: 次の謎解きルートの権限が解放されました。");
+
+                // 3. 連動する隠しエリアを表示
+                const gizmo = document.getElementById('hiddenGizmo');
+                if (gizmo) {
+                    gizmo.classList.add('show');
+                }
+            }
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
             renderPost();
         });
