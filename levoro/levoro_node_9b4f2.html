@@ -69,12 +69,12 @@
 
     <!-- 
       【ソースコードを見ているプレイヤーへ】
-      管理者認証コード: project-echo-99
+      管理者認証コード: X-PROTOCOL-992
     -->
 
     <div class="container">
         <h2>[ RESTRICTED ACCESS ]</h2>
-        <p>管理者認証コードを入力してください</p>
+        <p>認証トークンを入力してください</p>
 
         <input type="text" id="passcode" placeholder="コードを入力...">
         <br>
@@ -91,7 +91,7 @@
             const messageEl = document.getElementById('message');
 
             // 合言葉の判定
-            if (inputVal === "project-echo-99") {
+            if (inputVal === "X-PROTOCOL-992") {
                 // 正解時の演出
                 messageEl.style.color = "#58a6ff";
                 messageEl.textContent = "認証成功。機密エリアへ転送中...";
