@@ -133,9 +133,14 @@
                 }, 1000);
                 return;
             }
+            
+            // 検索窓に入力されたクエリを取得したと仮定
+            let subquery = document.getElementById('search-input').value.trim();
 
+            // 【改善版】スペースをすべて削除し、すべて小文字に変換して正規化する
+            const normalizedQuery = subquery.toLowerCase().replace(/\s+/g, '');
             // 特殊キーワード（ログイン画面へ）
-            if (query === "lavoro illegale") {
+            if (normalizedQuery === "lavoroillegale") {
                 noteEl.style.color = "#85d996";
                 noteEl.textContent = "プロトコル照合成功。システムへアクセスします...";
                 resultsEl.style.display = "none";
