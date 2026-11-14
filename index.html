@@ -110,7 +110,7 @@
 
         function handleSearch() {
             const inputEl = document.getElementById('searchInput');
-            const query = inputEl.value.trim().toLowerCase();
+            const query = inputEl.value.trim();
             const resultsEl = document.getElementById('search-results');
             const noteEl = document.getElementById('search-note');
 
@@ -134,7 +134,9 @@
                 return;
             }
             
-            const cleanQuery = query.toLowerCase().replace(/[\s\-_]/g, '');
+            // 【強化版】半角/全角のスペース、ハイフン、アンダースコアをすべて削除し、小文字に統一
+            const cleanQuery = query.toLowerCase().replace(/[\s\u3000\-－―ー_＿]/g, '');
+
             if (cleanQuery === "lavoroillegale") {
                 noteEl.style.color = "#85d996";
                 noteEl.textContent = "プロトコル照合成功。システムへアクセスします...";
@@ -147,7 +149,7 @@
 
             // search-db.js のデータベースから検索
             const matchedItems = searchDatabase.filter(item => 
-                item.keywords.some(kw => query.includes(kw)) || item.title.toLowerCase().includes(query)
+                item.keywords.some(kw => query.toLowerCase().includes(kw)) || item.title.toLowerCase().includes(query.toLowerCase())
             );
 
             if (matchedItems.length > 0) {
