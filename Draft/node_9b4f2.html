@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Internal Memo | JHON NISHI</title>
+    <title>Internal Memo JHON NISHI</title>
     <link rel="stylesheet" href="../style.css">
     <style>
         .blog-container {
@@ -92,7 +92,7 @@
             background: #f9f9f9;
             border: 1px solid #ddd;
             border-radius: 6px;
-            display: none; /* 初期状態は非表示 */
+            display: none;
         }
         .secret-trigger-area.show {
             display: block;
@@ -137,82 +137,43 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 JHON Nishi. All Rights Reserved.</p>
+        <p>&copy; 2026 Jhon Nishi. All Rights Reserved.</p>
     </footer>
 
+    <!-- 外部データベースファイルの読み込み -->
+    <script src="blog-data.js"></script>
+
     <script>
-        // ブログ記事データベース（特定の記事に黒塗り＆連動ギミックを仕込む）
-        const posts = [
-            {
-                date: "2026-11-02",
-                title: "デザインシステム導入における学び",
-                content: "複数のプロジェクトを並行して進める中で、共通のトークンやコンポーネントを定義することの重要性を改めて実感しています。特にAtomic Designの階層構造を取り入れたことで、チーム間のコミュニケーションコストが劇的に削減されました。"
-            },
-            {
-                date: "2026-11-08",
-                title: "認証プロトコルのセキュリティ見直し",
-                content: "検索インデックスからの意図しないアクセスを防ぐため、一部の裏ルート（maintenance系）のパスコード照合ロジックを強化。また、ブラウザバック時のキャッシュクリア処理の挙動を全ページで統一した。"
-            },
-            {
-                date: "2026-11-14",
-                title: "個人ブログサイトをリニューアル中",
-                content: `現在、ポートフォリオとは別に、日々の技術的気付きやデザインに関する思考をまとめるための個人ブログを構築しています。コンポーネント設計の一貫性を保ちつつ、シンプルで読みやすいタイポグラフィを追求中。<br><br>
-                【機密セッション情報】<br>
-                管理端末へのアクセスキー: 
-                <span id="secretKey" class="redacted" onclick="revealAndTrigger(this)">
-                    [ クリックして暗号を復号: X-PROTOCOL-992 ]
-                </span>
-
-                <!-- 復号されると連動して出現する隠しギミック -->
-                <div id="hiddenGizmo" class="secret-trigger-area">
-                    <span style="color: #28a745; font-family: monospace; font-size: 0.85rem; font-weight: bold;">[!] SECURITY OVERRIDE SUCCESSFUL</span>
-                    <p style="margin: 8px 0 0 0; font-size: 0.9rem; color: #555;">
-                        コンソールログへのシステム出力が完了しました。開発者ツールのコンソールをご確認ください。<br>
-                        次のアクセスノード: <a href="maintenance.html" style="color: #0366d6; text-decoration: underline;">/system/maintenance_v2.html</a>
-                    </p>
-                </div>`
-            }
-        ];
-
-        let currentIndex = 0;
-        let isRevealed = false; // 二重実行防止用フラグ
+        // blog-data.js で定義された blogPosts 配列を使用
+        let currentIndex = 0; // 最も古い日付（2026-11-01）からスタート
+        let isRevealed = false;
 
         function renderPost() {
-            const post = posts[currentIndex];
+            const post = blogPosts[currentIndex];
             
             document.getElementById('currentDateDisplay').textContent = post.date.replace(/-/g, '.');
             document.getElementById('postTitle').textContent = post.title;
-            
-            // innerHTMLを使ってHTMLタグやギミックを反映
             document.getElementById('postContent').innerHTML = post.content;
 
             document.getElementById('prevBtn').disabled = (currentIndex === 0);
-            document.getElementById('nextBtn').disabled = (currentIndex === posts.length - 1);
-            
-            // 記事を切り替えた際、すでに復号済みであれば状態をリセットするか維持するかを調整
+            document.getElementById('nextBtn').disabled = (currentIndex === blogPosts.length - 1);
         }
 
         function changePost(direction) {
             currentIndex += direction;
             if (currentIndex < 0) currentIndex = 0;
-            if (currentIndex >= posts.length) currentIndex = posts.length - 1;
+            if (currentIndex >= blogPosts.length) currentIndex = blogPosts.length - 1;
             
             renderPost();
         }
 
-        // 黒塗りテキストがクリックされたときの処理
         function revealAndTrigger(element) {
             if (!isRevealed) {
                 isRevealed = true;
-
-                // 1. 黒塗りを解除
                 element.classList.add('revealed');
-
-                // 2. ブラウザのコンソールログにメッセージを出力
                 console.log("%c[SYSTEM DECRYPTED] Secret key accessed: X-PROTOCOL-992", "color: #b78103; font-weight: bold; font-size: 13px;");
                 console.log("-> プレイヤーへのヒント: 次の謎解きルートの権限が解放されました。");
-
-                // 3. 連動する隠しエリアを表示
+                
                 const gizmo = document.getElementById('hiddenGizmo');
                 if (gizmo) {
                     gizmo.classList.add('show');
