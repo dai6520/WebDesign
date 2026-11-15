@@ -10,7 +10,15 @@
         .epilogue-box { background: #040609; border: 1px solid var(--border-color); border-left: 4px solid var(--accent-green); border-radius: 4px; padding: 25px; margin: 20px 0; font-size: 0.92rem; line-height: 1.9; color: #e6edf3; }
         .epilogue-box p { margin-bottom: 16px; }
         .system-frozen { color: var(--text-muted); font-family: Consolas, monospace; font-size: 0.85rem; border: 1px dashed var(--border-color); padding: 15px; border-radius: 4px; margin: 20px 0; background: #090c12; }
-        .nav-back { display: inline-block; margin-top: 25px; color: var(--accent-blue); text-decoration: none; font-size: 0.9rem; }
+        
+        /* リセットエリアのスタイル */
+        .reset-section { margin-top: 40px; padding: 20px; background: rgba(248, 81, 73, 0.05); border: 1px dashed rgba(248, 81, 73, 0.3); border-radius: 6px; text-align: center; }
+        .reset-section p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px; }
+        .btn-reset { background: transparent; color: var(--accent-red); border: 1px solid var(--accent-red); padding: 8px 20px; font-family: inherit; font-size: 0.85rem; border-radius: 4px; cursor: pointer; transition: all 0.2s; }
+        .btn-reset:hover { background: rgba(248, 81, 73, 0.15); }
+
+        .nav-footer-links { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; flex-wrap: wrap; gap: 10px; }
+        .nav-back { color: var(--accent-blue); text-decoration: none; font-size: 0.9rem; }
         .nav-back:hover { text-decoration: underline; }
     </style>
 </head>
@@ -22,7 +30,7 @@
             <span class="user-badge" style="background: rgba(63, 185, 80, 0.15); color: var(--accent-green); border-color: rgba(63, 185, 80, 0.4);">STATUS: CLOSED</span>
         </div>
         <div class="header-controls">
-            <a href="../index.html" class="surface-link" title="ポートフォリオへ戻る">&larr; EXIT TO SURFACE</a>
+            <a href="index.html" class="surface-link" title="ポートフォリオへ戻る">&larr; EXIT TO SURFACE</a>
         </div>
     </header>
 
@@ -62,7 +70,14 @@
                     </p>
                 </div>
 
-                <a href="../index.html" class="nav-back">&larr; 表のポートフォリオ（index.html）へ戻る</a>
+                <div class="reset-section">
+                    <p>[DEVELOPER / DEBUG OPTION] もう一度最初から謎解きやクリア演出を検証したい場合：</p>
+                    <button class="btn-reset" onclick="resetArgProgress()">クリア状態をリセットして初期状態に戻す</button>
+                </div>
+
+                <div class="nav-footer-links">
+                    <a href="index.html" class="nav-back">&larr; 表のポートフォリオ（index.html）へ戻る</a>
+                </div>
             </div>
         </section>
     </main>
@@ -71,5 +86,16 @@
         NEXUS SYSTEMS INTERNAL REPOSITORY // ARCHIVE PERMANENTLY SEALED
     </footer>
 
+    <script>
+        function resetArgProgress() {
+            const confirmed = confirm("【確認】クリア状態（localStorage）をリセットしますか？\n表のニュース速報バナーが非表示になり、最終ノードの状態が初期化されます。");
+            if (confirmed) {
+                // クリアフラグを削除
+                localStorage.removeItem('nexus_arg_completed');
+                alert("クリア状態をリセットしました。表のポートフォリオ画面に戻ります。");
+                window.location.href = "index.html";
+            }
+        }
+    </script>
 </body>
 </html>
