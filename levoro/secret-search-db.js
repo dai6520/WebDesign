@@ -31,7 +31,24 @@ const secretDatabase = [
         desc: "裏API開発を担当させられ、消息を絶ったエンジニアの記録と最後のメッセージ。",
         url: "node_8f4b2d.html"
     },
-    //表で確認できる画面
+    {
+        keywords: ["project-obelisk", "projectobelisk", "obelisk", "オベリスク", "バックドア"],
+        title: "FILE_06: PROJECT-OBELISK 計画概要およびバックドア拡散仕様書",
+        desc: "杉浩太が主導する上位極秘案件。国内基幹インフラへの潜伏型モジュール拡散計画の全貌。",
+        url: "node_f19d04.html"
+    },    //表で確認できる画面
+    {
+        keywords: ["backup_key_07", "backupkey07", "backup", "停止キー", "音声", "告白"],
+        title: "KEY_ARCHIVE: 杉 浩太 盗聴音声トランスクリプト（PROJECT-OBELISKの真の動機）",
+        desc: "【BACKUP_KEY_07解読済】杉浩太が語る「犠牲は必要経費」という狂気の告白音声データ。",
+        url: "node_d4b912.html"
+    },
+    {
+        keywords: ["告発", "リーク", "最終", "ファイナル", "証拠パッケージ"],
+        title: "FINAL_NODE: 外部告発プロトコルおよびサーバー一斉消去コンソール",
+        desc: "集めたすべての証拠と停止キーを外部へ一斉送信し、アーカイブを自爆消去する最終手順。",
+        url: "node_e7c109.html"
+    },
     { keywords: ["corporate", "コーポレート", "物流", "企業"], title: "Corporate Site A (実績詳細)", url: " ../work-corporate.html" },
     { keywords: ["ecommerce", "ec", "app", "アパレル", "アプリ"], title: "E-commerce App (実績詳細)", url: "../work-ecommerce.html" },
     { keywords: ["branding", "media", "メディア", "カルチャー"], title: "Branding Media (実績詳細)", url: "../work-branding.html" },

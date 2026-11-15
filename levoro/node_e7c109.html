@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NODE_E7C109 // FINAL UPLOADER & KILL-SWITCH CONSOLE</title>
+    <link rel="stylesheet" href="secret-style.css">
+    <style>
+        .doc-meta { display: flex; justify-content: space-between; background: rgba(248, 81, 73, 0.1); border: 1px solid rgba(248, 81, 73, 0.4); padding: 10px 15px; border-radius: 4px; font-size: 0.8rem; color: var(--accent-red); margin-bottom: 25px; font-weight: bold; }
+        .terminal-box { background: #040609; border: 1px solid var(--border-color); border-radius: 6px; padding: 22px; margin: 20px 0; font-family: Consolas, monospace; font-size: 0.88rem; color: #7ee787; line-height: 1.7; }
+        .terminal-box .prompt { color: var(--accent-blue); }
+        .checklist-panel { background: #040609; border: 1px solid var(--border-color); border-radius: 6px; padding: 20px; margin: 20px 0; font-size: 0.9rem; }
+        .checklist-panel h3 { color: #f0f6fc; margin-top: 0; font-size: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; margin-bottom: 12px; }
+        .check-item { display: flex; align-items: center; margin-bottom: 10px; color: #c9d1d9; }
+        .check-item input[type="checkbox"] { margin-right: 10px; accent-color: var(--accent-green); transform: scale(1.1); }
+        
+        .final-action-area { margin-top: 35px; padding: 30px; background: rgba(248, 81, 73, 0.08); border: 2px solid rgba(248, 81, 73, 0.5); border-radius: 6px; text-align: center; }
+        .final-action-area h3 { color: var(--accent-red); margin-top: 0; font-size: 1.2rem; }
+        .final-action-area p { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 24px; line-height: 1.6; }
+        
+        .btn-execute-leak { background: var(--accent-red); color: #ffffff; border: none; padding: 16px 36px; font-family: inherit; font-size: 1.05rem; font-weight: bold; border-radius: 4px; cursor: pointer; letter-spacing: 1px; box-shadow: 0 0 25px rgba(248, 81, 73, 0.5); transition: all 0.2s; }
+        .btn-execute-leak:hover { background: #ff6b63; transform: scale(1.02); box-shadow: 0 0 35px rgba(248, 81, 73, 0.8); }
+
+        /* 実行中＆エンディング用オーバーレイ */
+        #terminalOverlay { display: none; position: fixed; inset: 0; background: #030407; z-index: 9999; padding: 40px 25px; overflow-y: auto; flex-direction: column; justify-content: center; align-items: center; }
+        .terminal-window { max-width: 750px; width: 100%; background: #090c12; border: 1px solid var(--border-color); border-radius: 6px; padding: 30px; box-shadow: 0 0 60px rgba(0, 0, 0, 0.9); }
+        #consoleOutput { font-family: Consolas, monospace; font-size: 0.88rem; line-height: 1.7; color: #3fb950; margin-bottom: 20px; white-space: pre-wrap; }
+        .log-warn { color: #d29922; }
+        .log-crit { color: #f85149; font-weight: bold; }
+        
+        #endingScreen { display: none; text-align: center; margin-top: 25px; padding-top: 25px; border-top: 1px dashed #30363d; }
+        #endingScreen h2 { color: var(--accent-red); font-size: 1.4rem; letter-spacing: 2px; margin-bottom: 12px; }
+        #endingScreen p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.8; margin-bottom: 25px; }
+        .btn-surface-end { display: inline-block; padding: 12px 28px; border: 1px solid var(--accent-blue); color: var(--accent-blue); text-decoration: none; border-radius: 4px; font-size: 0.9rem; transition: all 0.2s; }
+        .btn-surface-end:hover { background: rgba(88, 166, 255, 0.15); }
+        .nav-back { display: inline-block; margin-top: 20px; color: var(--accent-blue); text-decoration: none; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">
+            <a href="node_4d28fc.html" class="brand-title">NEXUS_SYS // ARCHIVE</a>
+            <span class="user-badge">AUTH: JHON_NISHI</span>
+        </div>
+        <div class="header-controls">
+            <div class="header-search">
+                <input type="text" id="secretSearchInput" placeholder="極秘資料・案件コードで検索..." autocomplete="off">
+                <button onclick="executeSecretSearch()">検索</button>
+            </div>
+            <a href="index.html" class="surface-link" title="公開ポートフォリオへ戻る">&larr; EXIT TO SURFACE</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="doc-meta">
+            <span>NODE_ID: node_e7c109.html</span>
+            <span>STATUS: FINAL UPLOADER & OBELISK KILL-SWITCH CONSOLE</span>
+        </div>
+
+        <div id="mainContent">
+            <section class="message-panel">
+                <div class="message-header">
+                    <span>FILE_ID: global_leak_and_killswitch.sh</span>
+                    <span>AUTHOR: J. NISHI / PREPARED WITH T. TANI'S DATA</span>
+                </div>
+
+                <div class="message-body">
+                    <h1>最終フェーズ：PROJECT-OBELISK 無力化および外部一斉告発コンソール</h1>
+                    <p>
+                        これまでに収集したすべての機密データ（仕様書、資金洗浄ログ、削除済み名簿、杉の音声告白）と、谷 智也が命がけで残したキルスイッチ（停止コード）を統合し、巨大インフラ乗っ取り計画を根絶やしにするための最終コンソール。
+                    </p>
+
+                    <div class="terminal-box">
+                        <span class="prompt">nexus@archive-core:~$</span> ./verify_evidence_integrity.sh --strict<br>
+                        [OK] X-PROTOCOL-992 Specification & Purge Logs Verified.<br>
+                        [OK] Offshore Financial Laundering Records Verified.<br>
+                        [OK] Sugi Kota Intercepted Audio (BACKUP_KEY_07) Verified.<br>
+                        <span style="color: var(--accent-green);">[SYSTEM READY] All cryptographic packages loaded successfully. Ready to execute global broadcast.</span>
+                    </div>
+
+                    <div class="checklist-panel">
+                        <h3>[SYSTEM CHECK] 告発パッケージに同梱される証拠リスト</h3>
+                        <div class="check-item"><input type="checkbox" checked disabled> <span>X-PROTOCOL-992 による違法労働監視・自動パージの全容記録</span></div>
+                        <div class="check-item"><input type="checkbox" checked disabled> <span>大手SIerからオフショア口座へ流出したマネーロンダリングの証拠</span></div>
+                        <div class="check-item"><input type="checkbox" checked disabled> <span>杉 浩太が主導する国内インフラ乗っ取り計画「PROJECT-OBELISK」の設計図</span></div>
+                        <div class="check-item"><input type="checkbox" checked disabled> <span>杉 浩太自身の狂気の告白音声データ（BACKUP_KEY_07）</span></div>
+                    </div>
+
+                    <div class="final-action-area">
+                        <h3>[FINAL WARNING] 運命の選択</h3>
+                        <p>
+                            下のボタンを押すと、すべての証拠が警察・報道機関・サイバーセキュリティ監視機関へ一斉送信されます。<br>
+                            同時に、全国の基幹サーバーに仕掛けられたオベリスク・バックドアを無効化するキルスイッチが作動し、<strong>このアーカイブサーバーは証拠隠滅のために完全消去（シャットダウン）されます。</strong>
+                        </p>
+                        <button class="btn-execute-leak" onclick="executeFinalProtocol()">EXECUTE GLOBAL LEAK & KILL-SWITCH</button>
+                    </div>
+
+                    <a href="node_4d28fc.html" class="nav-back">&larr; アーカイブホームに戻る</a>
+                </div>
+            </section>
+        </div>
+
+        <!-- 検索結果ビュー -->
+        <div id="searchView" class="search-view-container">
+            <section class="message-panel">
+                <div class="search-view-header">
+                    <span class="search-view-title" id="searchViewTitle">検索結果</span>
+                    <button class="back-to-home-btn" onclick="closeSearchView()">&larr; 戻る</button>
+                </div>
+                <div id="searchViewNote" style="margin-bottom: 20px; font-size: 0.9rem;"></div>
+                <ul id="searchViewResults" class="search-results-list"></ul>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        NEXUS SYSTEMS INTERNAL REPOSITORY // SESSION ENCRYPTED
+    </footer>
+
+    <!-- 実行中アニメーション＆エンディングオーバーレイ -->
+    <div id="terminalOverlay">
+        <div class="terminal-window">
+            <div id="consoleOutput"></div>
+            <div id="endingScreen">
+                <h2>MISSION ACCOMPLISHED // SYSTEM PURGED</h2>
+                <p>
+                    すべての証拠データと音声告発が外部機関へ正常に送信されました。<br>
+                    キルスイッチによってPROJECT-OBELISKのネットワークは完全に遮断され、このアーカイブサーバーは自己消去されました。<br><br>
+                    —— あなたの調査が、闇に葬られかけたすべての真実を救い出した。
+                </p>
+                <a href="index.html" class="btn-surface-end">表のポートフォリオ（index.html）へ戻る</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="secret-search-db.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem('nexus_arg_completed') === 'true') {
+                showPurgedStateImmediate();
+            }
+        });
+
+        function showPurgedStateImmediate() {
+            const overlay = document.getElementById('terminalOverlay');
+            const output = document.getElementById('consoleOutput');
+            const ending = document.getElementById('endingScreen');
+            overlay.style.display = 'flex';
+            output.innerHTML = `<span class="log-crit">[SYSTEM ERROR 410: GONE]</span>\nこの最終ノード（node_e7c109.html）のデータは、告発およびキルスイッチ実行後にパージされました。`;
+            ending.style.display = 'block';
+        }
+
+        function executeFinalProtocol() {
+            const confirmed = confirm("【最終警告】\nすべての証拠とキルスイッチを起動し、外部への一斉告発を実行しますか？\n（※この操作を取り消すことはできません）");
+            if (!confirmed) return;
+
+            const overlay = document.getElementById('terminalOverlay');
+            const output = document.getElementById('consoleOutput');
+            const ending = document.getElementById('endingScreen');
+            
+            overlay.style.display = 'flex';
+            output.innerHTML = "";
+
+            const logs = [
+                { text: "[INIT] 証拠パッケージおよび BACKUP_KEY_07 の整合性を検証中...", delay: 400, cls: "" },
+                { text: "[DISPATCH] サイバー犯罪対策課・主要報道機関の受信ゲートウェイへ接続... [CONNECTED]", delay: 1200, cls: "" },
+                { text: "[UPLOAD] 資金洗浄ログ・削除済み名簿・杉の音声告白データを一斉送信中... [100%]", delay: 2200, cls: "" },
+                { text: "[EXEC] 悪性プロトコル『PROJECT-OBELISK』のキルスイッチを起動...", delay: 3200, cls: "log-warn" },
+                { text: "[SUCCESS] 全国インフラに潜伏していたバックドアモジュールの無効化を確認。", delay: 4200, cls: "log-warn" },
+                { text: "[ALERT] 管理者側（杉 浩太の端末）からの緊急逆探知・防衛プロトコル発動！", delay: 5200, cls: "log-crit" },
+                { text: "[PURGE] アーカイブサーバーの全セクタをゼロフィル消去（物理フォーマット）中...", delay: 6200, cls: "log-crit" },
+                { text: "[EOF] すべての任務が完了しました。セッションを終了します。", delay: 7200, cls: "log-crit" }
+            ];
+
+            logs.forEach(item => {
+                setTimeout(() => {
+                    const span = document.createElement('div');
+                    if (item.cls) span.className = item.cls;
+                    span.textContent = item.text;
+                    output.appendChild(span);
+                }, item.delay);
+            });
+
+            setTimeout(() => {
+                localStorage.setItem('nexus_arg_completed', 'true');
+                ending.style.display = 'block';
+            }, 8000);
+        }
+
+        // 共通検索ロジック
+        function executeSecretSearch() {
+            const inputEl = document.getElementById('secretSearchInput');
+            if (!inputEl) return;
+            const rawQuery = inputEl.value.trim();
+            if (rawQuery === "") { alert("[!] 検索キーワードを入力してください。"); return; }
+            const cleanQuery = rawQuery.toLowerCase().replace(/[\s\u3000\-－―ー_＿]/g, '');
+            const matched = secretDatabase.filter(item =>
+                item.keywords.some(kw => {
+                    const cleanKw = kw.toLowerCase().replace(/[\s\u3000\-－―ー_＿]/g, '');
+                    return cleanQuery.includes(cleanKw) || cleanKw.includes(cleanQuery);
+                })
+            );
+            document.getElementById('mainContent').style.display = 'none';
+            document.getElementById('searchView').style.display = 'block';
+            const titleEl = document.getElementById('searchViewTitle');
+            const noteEl = document.getElementById('searchViewNote');
+            const resultsEl = document.getElementById('searchViewResults');
+            resultsEl.innerHTML = "";
+            if (matched.length > 0) {
+                titleEl.textContent = `検索結果: "${rawQuery}"`;
+                noteEl.style.color = "#3fb950";
+                noteEl.textContent = `[SUCCESS] ${matched.length}件の機密アーカイブがヒットしました：`;
+                matched.forEach(item => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<a href="${item.url}">${item.title}</a><span>${item.desc}</span>`;
+                    resultsEl.appendChild(li);
+                });
+            } else {
+                titleEl.textContent = `検索結果: "${rawQuery}"`;
+                noteEl.style.color = "#f85149";
+                noteEl.textContent = `[NOT FOUND] 「${rawQuery}」に該当する機密資料は見つかりませんでした。`;
+            }
+        }
+        function closeSearchView() {
+            document.getElementById('searchView').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+            document.getElementById('secretSearchInput').value = "";
+        }
+        document.getElementById('secretSearchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') { executeSecretSearch(); }
+        });
+    </script>
+</body>
+</html>
