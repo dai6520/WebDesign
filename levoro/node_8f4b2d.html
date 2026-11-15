@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NODE_8F4B2D // NEXUS ARCHIVE [TARGET: T.TANI]</title>
+    <link rel="stylesheet" href="secret-style.css">
+    <style>
+        .doc-meta { display: flex; justify-content: space-between; background: rgba(210, 153, 34, 0.08); border: 1px solid rgba(210, 153, 34, 0.3); padding: 10px 15px; border-radius: 4px; font-size: 0.8rem; color: #d29922; margin-bottom: 25px; }
+        .dossier-card { background: #040609; border: 1px solid var(--border-color); border-radius: 6px; padding: 25px; margin-bottom: 25px; }
+        .dossier-header { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; margin-bottom: 18px; flex-wrap: wrap; gap: 10px; }
+        .dossier-name { font-size: 1.3rem; color: #f0f6fc; font-weight: bold; }
+        .role-compromised { font-size: 0.8rem; padding: 3px 8px; border-radius: 4px; background: rgba(210, 153, 34, 0.15); color: #d29922; border: 1px solid rgba(210, 153, 34, 0.4); }
+        .dossier-grid { display: grid; grid-template-columns: 140px 1fr; gap: 12px 15px; font-size: 0.9rem; margin-bottom: 20px; }
+        .dossier-label { color: var(--text-muted); }
+        .dossier-val { color: var(--text-main); line-height: 1.6; }
+        .dossier-note { background: rgba(255, 255, 255, 0.02); border-left: 3px solid var(--accent-blue); padding: 15px; font-size: 0.9rem; line-height: 1.75; color: #c9d1d9; }
+        .code-hint { color: var(--accent-blue); font-weight: bold; background: rgba(88, 166, 255, 0.12); padding: 2px 6px; border-radius: 3px; }
+        .nav-back { display: inline-block; margin-top: 15px; color: var(--accent-blue); text-decoration: none; font-size: 0.9rem; }
+        .nav-back:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">
+            <a href="node_4d28fc.html" class="brand-title">NEXUS_SYS // ARCHIVE</a>
+            <span class="user-badge">AUTH: JHON_NISHI</span>
+        </div>
+        <div class="header-controls">
+            <div class="header-search">
+                <input type="text" id="secretSearchInput" placeholder="極秘資料・案件コードで検索..." autocomplete="off">
+                <button onclick="executeSecretSearch()">検索</button>
+            </div>
+            <a href="index.html" class="surface-link" title="公開ポートフォリオへ戻る">&larr; EXIT TO SURFACE</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="doc-meta">
+            <span>NODE_ID: node_8f4b2d.html</span>
+            <span>CLASSIFICATION: CONFIDENTIAL // MISSING COLLABORATOR</span>
+        </div>
+
+        <div id="mainContent">
+            <section class="message-panel">
+                <div class="message-header">
+                    <span>FILE_ID: dossier_tani_tomoya.log</span>
+                    <span>COMPILED BY: J. NISHI</span>
+                </div>
+
+                <div class="message-body">
+                    <h1>個人調査ファイル：谷 智也（バックエンド開発者・消息不明）</h1>
+                    <p>
+                        私と同じ現場で、裏システムのデータベースとAPI処理を担当していたもう一人の開発者。彼もまた、杉の巧みな罠によってこの犯罪システムに引きずり込まれた被害者の一人だった。
+                    </p>
+
+                    <div class="dossier-card">
+                        <div class="dossier-header">
+                            <span class="dossier-name">谷 智也（TANI TOMOYA）</span>
+                            <span class="role-compromised">STATUS: MISSING / 連絡途絶・行方不明</span>
+                        </div>
+                        <div class="dossier-grid">
+                            <div class="dossier-label">表向きの肩書</div>
+                            <div class="dossier-val">フリーランス バックエンドエンジニア（29歳）</div>
+                            <div class="dossier-label">裏の役割</div>
+                            <div class="dossier-val">X-PROTOCOL-992 データベース・API構築担当</div>
+                            <div class="dossier-label">経歴・特徴</div>
+                            <div class="dossier-val">サーバー設計の技術力は極めて高いが気が弱く、親の多額の借金を肩代わりする条件で杉に弱みを握られ、裏システムの実装を強要されていた。私（西）が作ったUIの裏で動く「自動データ消去API」を実際に書かされた人物。</div>
+                            <div class="dossier-label">失踪の経緯</div>
+                            <div class="dossier-val">先月末から突然チャットが既読にならなくなり、都内のアパートも引き払われていた。管理会社には「実家へ帰郷」と届け出があったが、実家には戻っていない。</div>
+                        </div>
+                        <div class="dossier-note">
+                            <strong>[J.NISHI 調査メモ]</strong><br>
+                            谷は途中から自分の書いているコードが人の人生を奪っていることに耐えられなくなっていた。消える直前、私宛てに秘匿チャットでこうメッセージを残している。<br>
+                            <em>「西さん、もう限界です。杉の別の計画のログを抜きました。何かあれば <span class="code-hint">BACKUP_KEY_07</span> のコードでサーバーの深部に隠してあります。どうか気をつけて——」</em><br>
+                            この直後、彼の社内アカウントはシステム上から完全に抹消（Purge）された。おそらく、すでに奴らに感づかれて消されたのだと思う。
+                        </div>
+                    </div>
+
+                    <a href="node_4d28fc.html" class="nav-back">&larr; アーカイブホームに戻る</a>
+                </div>
+            </section>
+        </div>
+
+        <!-- 検索結果ビュー -->
+        <div id="searchView" class="search-view-container">
+            <section class="message-panel">
+                <div class="search-view-header">
+                    <span class="search-view-title" id="searchViewTitle">検索結果</span>
+                    <button class="back-to-home-btn" onclick="closeSearchView()">&larr; 戻る</button>
+                </div>
+                <div id="searchViewNote" style="margin-bottom: 20px; font-size: 0.9rem;"></div>
+                <ul id="searchViewResults" class="search-results-list"></ul>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        NEXUS SYSTEMS INTERNAL REPOSITORY // SESSION ENCRYPTED
+    </footer>
+
+    <script src="secret-search-db.js"></script>
+    <script>
+        function executeSecretSearch() {
+            const inputEl = document.getElementById('secretSearchInput');
+            if (!inputEl) return;
+            const rawQuery = inputEl.value.trim();
+            if (rawQuery === "") { alert("[!] 検索キーワードを入力してください。"); return; }
+            const cleanQuery = rawQuery.toLowerCase().replace(/[\s\u3000\-－―ー_＿]/g, '');
+            const matched = secretDatabase.filter(item =>
+                item.keywords.some(kw => {
+                    const cleanKw = kw.toLowerCase().replace(/[\s\u3000\-－―ー_＿]/g, '');
+                    return cleanQuery.includes(cleanKw) || cleanKw.includes(cleanQuery);
+                })
+            );
+            document.getElementById('mainContent').style.display = 'none';
+            document.getElementById('searchView').style.display = 'block';
+            const titleEl = document.getElementById('searchViewTitle');
+            const noteEl = document.getElementById('searchViewNote');
+            const resultsEl = document.getElementById('searchViewResults');
+            resultsEl.innerHTML = "";
+            if (matched.length > 0) {
+                titleEl.textContent = `検索結果: "${rawQuery}"`;
+                noteEl.style.color = "#3fb950";
+                noteEl.textContent = `[SUCCESS] ${matched.length}件の機密アーカイブがヒットしました：`;
+                matched.forEach(item => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<a href="${item.url}">${item.title}</a><span>${item.desc}</span>`;
+                    resultsEl.appendChild(li);
+                });
+            } else {
+                titleEl.textContent = `検索結果: "${rawQuery}"`;
+                noteEl.style.color = "#f85149";
+                noteEl.textContent = `[NOT FOUND] 「${rawQuery}」に該当する機密資料は見つかりませんでした。`;
+            }
+        }
+        function closeSearchView() {
+            document.getElementById('searchView').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+            document.getElementById('secretSearchInput').value = "";
+        }
+        document.getElementById('secretSearchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') { executeSecretSearch(); }
+        });
+    </script>
+</body>
+</html>
