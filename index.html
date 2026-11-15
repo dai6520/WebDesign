@@ -6,8 +6,91 @@
     <title>JHON NISHI | Web Designer Portfolio</title>
     <!-- 外部CSSの読み込み -->
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* --------------------------------------------------
+           ARG後日談：ニュース速報バナー（クリア後に表示）
+           -------------------------------------------------- */
+        .breaking-news-banner {
+            background: linear-gradient(90deg, #1f1113, #2d1215);
+            border-bottom: 2px solid #f85149;
+            color: #f0f6fc;
+            padding: 12px 20px;
+            font-size: 0.9rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(248, 81, 73, 0.2);
+            animation: slideDown 0.5s ease-out;
+        }
+        .breaking-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .breaking-tag {
+            background: #f85149;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 3px;
+            letter-spacing: 1px;
+        }
+        .breaking-link {
+            color: #58a6ff;
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: auto;
+        }
+        .breaking-link:hover { text-decoration: underline; }
+        .breaking-close {
+            background: none;
+            border: none;
+            color: #8b949e;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 0 5px;
+        }
+        .breaking-close:hover { color: #f0f6fc; }
+        @keyframes slideDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* --------------------------------------------------
+           裏アーカイブへの隠し導線（イースターエッグ）
+           -------------------------------------------------- */
+        .secret-portal-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: #eaeaea;
+            border-radius: 50%;
+            margin-left: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            vertical-align: middle;
+        }
+        .secret-portal-dot:hover {
+            background-color: #58a6ff;
+            box-shadow: 0 0 8px #58a6ff;
+        }
+    </style>
 </head>
 <body>
+
+    <!-- 告発完了後に自動表示される速報バナー -->
+    <div id="breakingNewsBanner" class="breaking-news-banner" style="display: none;">
+        <div class="breaking-content">
+            <span class="breaking-tag">速報 // ニュース</span>
+            <span id="breakingText">大手SIer「ネクサス・システムズ」事業推進部リーダーを逮捕——裏社会と癒着したインフラ乗っ取り未遂・不正送金の全貌が判明</span>
+            <a href="node_4d28fc.html" class="breaking-link">詳細アーカイブを読む &rarr;</a>
+        </div>
+        <button class="breaking-close" onclick="dismissBreakingNews()">&times;</button>
+    </div>
 
     <header>
         <div class="logo"><a href="index.html">JHON NISHI.</a></div>
@@ -93,7 +176,10 @@
     </section>
 
     <footer>
-        <p>&copy; 2026 Jhon Nishi. All Rights Reserved.</p>
+        <p>&copy; 2026 Jhon Nishi. All Rights Reserved.
+            <!-- [!] 秘密の導線：通常の閲覧者には気づかれない小さなドットから裏のアーカイブへアクセス可能 -->
+            <a href="node_4d28fc.html" class="secret-portal-dot" title="SYS_PORTAL"></a>
+        </p>
     </footer>
 
     <!-- 外部検索データベースの読み込み -->
@@ -103,10 +189,34 @@
         // ページ読み込み時（ブラウザバック時も含む）にリセット
         window.addEventListener('pageshow', function(event) {
             document.getElementById('searchInput').value = "";
-            document.getElementById('search-results').style.display = "none";
-            document.getElementById('search-results').innerHTML = "";
-            document.getElementById('search-note').textContent = "";
+            const resEl = document.getElementById('search-results');
+            if(resEl) {
+                resEl.style.display = "none";
+                resEl.innerHTML = "";
+            }
+            const noteEl = document.getElementById('search-note');
+            if(noteEl) noteEl.textContent = "";
         });
+
+        // ページ読み込み時にARGクリア状態をチェックして後日談バナーを表示
+        document.addEventListener('DOMContentLoaded', () => {
+            const isArgCompleted = localStorage.getItem('nexus_arg_completed') === 'true';
+            if (isArgCompleted) {
+                const banner = document.getElementById('breakingNewsBanner');
+                if (banner) {
+                    banner.style.display = 'block';
+                }
+                document.title = "Jhon Nishi // Software Engineer [Case Resolved]";
+            }
+        });
+
+        function dismissBreakingNews() {
+            const banner = document.getElementById('breakingNewsBanner');
+            if (banner) {
+                banner.style.opacity = '0';
+                setTimeout(() => { banner.style.display = 'none'; }, 300);
+            }
+        }
 
         function handleSearch() {
             const inputEl = document.getElementById('searchInput');
